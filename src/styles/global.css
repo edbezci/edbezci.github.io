@@ -1,0 +1,211 @@
+/* ------------------------------------------------------------------
+   Design tokens
+------------------------------------------------------------------- */
+:root {
+  --navy: #081521;
+  --slate: #172532;
+  --offwhite: #f2efe8;
+  --copper: #c48756;
+  /* Darker copper variant with sufficient contrast on warm off-white. */
+  --copper-dark: #8f5a2e;
+  --grey: #aeb8c1;
+  /* Muted text colour with sufficient contrast on warm off-white. */
+  --grey-dark: #47596a;
+
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
+    'Times New Roman', serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+
+  --container: 70rem;
+  --measure: 39rem;
+  --header-height: 4rem;
+}
+
+/* Light surfaces are the default context. */
+body,
+.section--light {
+  --text: var(--slate);
+  --text-muted: var(--grey-dark);
+  --accent: var(--copper-dark);
+  --rule: rgba(23, 37, 50, 0.16);
+  --focus: var(--copper-dark);
+}
+
+/* Dark surfaces. */
+.site-header,
+.site-footer,
+.hero,
+.section--dark,
+.section--slate {
+  --text: var(--offwhite);
+  --text-muted: var(--grey);
+  --accent: var(--copper);
+  --rule: rgba(174, 184, 193, 0.18);
+  --focus: var(--copper);
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--header-height) + 1.5rem);
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--slate);
+  background-color: var(--offwhite);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1.25em;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Subtle transitions only; disabled when reduced motion is preferred. */
+a,
+.button,
+.teaching-card {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+------------------------------------------------------------------- */
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+.prose {
+  max-width: var(--measure);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--copper);
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  top: 0.75rem;
+}
+
+/* ------------------------------------------------------------------
+   Sections
+------------------------------------------------------------------- */
+.section {
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  color: var(--text);
+}
+
+.section--light {
+  background-color: var(--offwhite);
+}
+
+.section--light + .section--light {
+  border-top: 1px solid var(--rule);
+}
+
+.section--dark {
+  background-color: var(--navy);
+}
+
+.section--slate {
+  background-color: var(--slate);
+}
+
+/* Quiet editorial columns (profile areas, industry themes). */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.columns > div {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+}
+
+.columns h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.columns p {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  margin-bottom: 0;
+}

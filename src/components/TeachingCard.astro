@@ -1,0 +1,84 @@
+---
+import type { TeachingEntry } from '../data/profile';
+
+interface Props {
+  entry: TeachingEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<article class="teaching-card">
+  <h3 class="teaching-card__title">{entry.title}</h3>
+  {
+    entry.institution && (
+      <p class="teaching-card__institution">
+        {entry.institution}
+        {entry.location && <span class="teaching-card__location">{entry.location}</span>}
+      </p>
+    )
+  }
+  <p class="teaching-card__description">{entry.description}</p>
+  <p class="teaching-card__link">
+    <a href={entry.repositoryUrl} target="_blank" rel="noopener noreferrer">
+      {entry.linkLabel}
+      <span class="visually-hidden">: {entry.title} (opens in a new tab)</span>
+      <span aria-hidden="true"> &rarr;</span>
+    </a>
+  </p>
+</article>
+
+<style>
+  .teaching-card {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background-color: #faf8f2;
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--accent);
+  }
+
+  .teaching-card:hover {
+    border-color: var(--accent);
+  }
+
+  .teaching-card__title {
+    font-size: 1.3rem;
+    color: var(--text);
+  }
+
+  .teaching-card__institution {
+    margin: 0.7rem 0 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .teaching-card__location {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--text-muted);
+  }
+
+  .teaching-card__description {
+    margin: 1rem 0 1.5rem;
+    color: var(--text-muted);
+    flex-grow: 1;
+  }
+
+  .teaching-card__link {
+    margin: 0;
+  }
+
+  .teaching-card__link a {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+</style>

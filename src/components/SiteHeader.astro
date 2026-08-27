@@ -1,0 +1,175 @@
+---
+import { profile, navigation } from '../data/profile';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href="/">{profile.shortName}</a>
+    <button
+      type="button"
+      class="site-header__toggle"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      Menu
+    </button>
+    <nav class="site-header__nav" id="primary-nav" aria-label="Primary">
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(
+    '.site-header__toggle',
+  );
+  const nav = document.getElementById('primary-nav');
+
+  if (toggle && nav) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Close' : 'Menu';
+      nav.classList.toggle('is-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (
+        event.key === 'Escape' &&
+        toggle.getAttribute('aria-expanded') === 'true'
+      ) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    nav.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLElement && event.target.closest('a')) {
+        setOpen(false);
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    min-height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background-color: var(--navy);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.8rem;
+  }
+
+  .site-header__name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .site-header__name:hover {
+    color: var(--accent);
+  }
+
+  .site-header__toggle {
+    display: none;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+  }
+
+  .site-header__toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .site-header__nav ul {
+    display: flex;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header__nav a {
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .site-header__nav a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 48rem) {
+    .site-header__toggle {
+      display: inline-block;
+    }
+
+    .site-header__nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--navy);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .site-header__nav.is-open {
+      display: block;
+    }
+
+    .site-header__nav ul {
+      flex-direction: column;
+      gap: 0;
+      width: min(100% - 2.5rem, var(--container));
+      margin-inline: auto;
+      padding-block: 0.5rem 1rem;
+    }
+
+    .site-header__nav li + li {
+      border-top: 1px solid var(--rule);
+    }
+
+    .site-header__nav a {
+      display: block;
+      padding: 0.85rem 0;
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container hero__inner">
+    <h1 class="hero__name" id="hero-heading">{profile.name}</h1>
+    <p class="hero__headline">{profile.headline}</p>
+    <p class="hero__intro">{profile.heroIntro}</p>
+    <div class="hero__actions">
+      <a class="button" href={profile.heroAction.href}>{profile.heroAction.label}</a>
+      {
+        profile.links.resume && (
+          <a class="button button--ghost" href={profile.links.resume}>
+            View résumé
+          </a>
+        )
+      }
+    </div>
+    <p class="hero__positioning">{profile.positioningLine.join(' · ')}</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--navy);
+    color: var(--text);
+    padding: clamp(5rem, 12vw, 9rem) 0 clamp(4rem, 9vw, 7rem);
+  }
+
+  .hero__name {
+    font-size: clamp(2.6rem, 6vw, 4.25rem);
+    letter-spacing: -0.01em;
+  }
+
+  .hero__headline {
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0.9rem 0 0;
+  }
+
+  .hero__intro {
+    max-width: 37rem;
+    font-size: 1.12rem;
+    color: var(--text);
+    margin: 1.75rem 0 0;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    background-color: var(--accent);
+    color: var(--navy);
+  }
+
+  .button--ghost {
+    border-color: var(--rule);
+    color: var(--text-muted);
+  }
+
+  .button--ghost:hover {
+    background-color: transparent;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero__positioning {
+    margin: 3rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+</style>
