@@ -1,0 +1,564 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationEntry from '../components/PublicationEntry.astro';
+import { profile } from '../data/profile';
+import {
+  book,
+  chapters,
+  articles,
+  editorialEssays,
+  theses,
+  policyWriting,
+  translatedEditions,
+  formalReviews,
+  publicReviews,
+  authorInterviews,
+  researchProfiles,
+} from '../data/publications';
+
+const title = 'Publications and Writing | Egemen Bezci, PhD';
+const description =
+  'Books, peer-reviewed research, chapters and policy writing by Egemen Bezci on intelligence, international security, climate security and applied data science.';
+
+const tabs = [
+  { id: 'book', label: 'Book' },
+  { id: 'chapters', label: 'Book chapters' },
+  { id: 'articles', label: 'Research articles' },
+  { id: 'editorial', label: 'Editorial and review essays' },
+  { id: 'policy-writing', label: 'Policy writing' },
+];
+
+const featuredBook = book.find((entry) => entry.featured) ?? book[0];
+const bookDoiUrl = featuredBook.doi ? `https://doi.org/${featuredBook.doi}` : undefined;
+
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+/** '2021-09-15' -> '15 September 2021'; '2020-03' -> 'March 2020' */
+const formatDate = (iso: string): string => {
+  const [year, month, day] = iso.split('-').map(Number);
+  return day
+    ? `${day} ${MONTHS[month - 1]} ${year}`
+    : `${MONTHS[month - 1]} ${year}`;
+};
+
+const reviewDetails = (review: (typeof formalReviews)[number]): string => {
+  const parts: string[] = [];
+  if (review.volume) parts.push(`vol. ${review.volume}`);
+  if (review.issue) parts.push(`no. ${review.issue}`);
+  if (review.pages) parts.push(`pp. ${review.pages}`);
+  if (review.date) parts.push(formatDate(review.date));
+  return parts.join(', ');
+};
+
+/**
+ * Review lines built as ordered parts so no stray whitespace is
+ * introduced between text, <cite> and <time> elements.
+ */
+type ReviewPart = string | { cite: string } | { time: string; label: string };
+
+const formalReviewItems = formalReviews.map((review) => {
+  const parts: ReviewPart[] = [review.reviewer];
+  if (review.title) parts.push(`, ‘${review.title}’`);
+  parts.push(', ');
+  parts.push({ cite: review.outlet });
+  const details = reviewDetails(review);
+  if (details) parts.push(`, ${details}`);
+  parts.push('.');
+  return { review, parts };
+});
+
+const publicReviewItems = publicReviews.map((review) => {
+  const parts: ReviewPart[] = [
+    `${review.reviewer}, ‘${review.title}’, `,
+    { cite: review.outlet },
+    ', ',
+    { time: review.date, label: formatDate(review.date) },
+    '.',
+  ];
+  return { review, parts };
+});
+
+const interviewItems = authorInterviews.map((interview) => ({
+  interview,
+  parts: [`‘${interview.title}’, `, { cite: interview.outlet }, '.'],
+}));
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: 'https://edbezci.github.io/publications/',
+  inLanguage: 'en',
+  author: {
+    '@type': 'Person',
+    name: profile.shortName,
+    url: 'https://edbezci.github.io/',
+    sameAs: [
+      'https://orcid.org/0000-0002-1089-5907',
+      'https://scholar.google.com/citations?hl=en&user=uzocfvYAAAAJ',
+      profile.links.linkedin,
+      profile.links.github,
+    ].filter((url): url is string => Boolean(url)),
+  },
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script
+    is:inline
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(jsonLd)}
+  />
+  <section class="section section--light pub-header" aria-labelledby="pub-heading">
+    <div class="container">
+      <p class="pub-header__eyebrow">Publications and writing</p>
+      <h1 class="pub-header__heading" id="pub-heading">
+        Research on intelligence, security and technological change
+      </h1>
+      <p class="pub-header__intro">
+        This page brings together my academic publications and policy writing on
+        intelligence, international security, political development, climate
+        security and applied data science.
+      </p>
+      <p class="pub-header__back">
+        <a href="/">← Return to profile homepage</a>
+      </p>
+      <nav class="pub-header__nav" aria-label="Publication categories">
+        <ul>
+          {
+            tabs.map((tab) => (
+              <li>
+                <a href={`#${tab.id}`}>{tab.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="book" aria-labelledby="book-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="book-heading">Book</h2>
+      <article class="book-feature">
+        <p class="book-feature__year">
+          <time datetime={String(featuredBook.year)}>{featuredBook.year}</time>
+        </p>
+        <h3 class="book-feature__title">
+          <cite>{featuredBook.title}</cite>{
+            featuredBook.subtitle && (
+              <span class="book-feature__subtitle">: {featuredBook.subtitle}</span>
+            )
+          }
+        </h3>
+        <p class="book-feature__authors">{featuredBook.authors.join(', ')}</p>
+        <p class="book-feature__meta">
+          {featuredBook.publisher}{featuredBook.isbn && ` · ISBN ${featuredBook.isbn}`}
+        </p>
+        {featuredBook.description && (
+          <p class="book-feature__description">{featuredBook.description}</p>
+        )}
+        <p class="book-feature__links">
+          {bookDoiUrl && <a href={bookDoiUrl}>DOI<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span></a>}
+          {featuredBook.url && <a href={featuredBook.url}>Publisher page<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span></a>}
+        </p>
+        {
+          translatedEditions.length > 0 && (
+            <div class="book-edition">
+              {translatedEditions.map((edition) => (
+                <div class="book-edition__item">
+                  <h4 class="book-edition__label">Translated edition</h4>
+                  <p class="book-edition__title">
+                    <cite>{edition.title}</cite>
+                  </p>
+                  <p class="book-edition__meta">
+                    {edition.publisher}, <time datetime={String(edition.year)}>{edition.year}</time>{` · In ${edition.language}`}{edition.isbn && ` · ISBN ${edition.isbn}`}
+                  </p>
+                  {edition.url && (
+                    <p class="book-edition__links">
+                      <a href={edition.url}>
+                        Publisher page<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span>
+                      </a>
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )
+        }
+      </article>
+
+      <div class="reviews">
+        <h3 class="reviews__heading">Reviews and reception</h3>
+
+        <h4 class="reviews__group">Scholarly and professional reviews</h4>
+        <ol class="reviews__list">
+          {
+            formalReviewItems.map(({ review, parts }) => (
+              <li>
+                <p class="reviews__line">
+                  {parts.map((part) =>
+                    typeof part === 'string' ? (
+                      part
+                    ) : 'cite' in part ? (
+                      <cite>{part.cite}</cite>
+                    ) : null,
+                  )}
+                  {review.note && <span class="reviews__note"> {review.note}</span>}
+                </p>
+                <p class="reviews__link">
+                  <a href={review.doi ? `https://doi.org/${review.doi}` : review.url}>
+                    {review.doi ? 'DOI' : 'Read review'}<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span>
+                  </a>
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+
+        <h4 class="reviews__group">Public reviews</h4>
+        <ol class="reviews__list">
+          {
+            publicReviewItems.map(({ review, parts }) => (
+              <li>
+                <p class="reviews__line">
+                  {parts.map((part) =>
+                    typeof part === 'string' ? (
+                      part
+                    ) : 'cite' in part ? (
+                      <cite>{part.cite}</cite>
+                    ) : (
+                      <time datetime={part.time}>{part.label}</time>
+                    ),
+                  )}
+                </p>
+                <p class="reviews__link">
+                  <a href={review.url}>
+                    Read review<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span>
+                  </a>
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+
+        <h4 class="reviews__group">Author interview</h4>
+        <ul class="reviews__list" role="list">
+          {
+            interviewItems.map(({ interview, parts }) => (
+              <li>
+                <p class="reviews__line">
+                  {parts.map((part) =>
+                    typeof part === 'string' ? part : <cite>{part.cite}</cite>,
+                  )}
+                </p>
+                <p class="reviews__link">
+                  <a href={interview.url}>
+                    Read interview<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span>
+                  </a>
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="chapters" aria-labelledby="chapters-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="chapters-heading">Book chapters</h2>
+      <ol class="pub-list">
+        {chapters.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="articles" aria-labelledby="articles-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="articles-heading">Research articles</h2>
+      <ol class="pub-list">
+        {articles.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="editorial" aria-labelledby="editorial-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="editorial-heading">Editorial and review essays</h2>
+      <ol class="pub-list">
+        {editorialEssays.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="other-research" aria-labelledby="other-research-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="other-research-heading">Other research output</h2>
+      <ol class="pub-list">
+        {theses.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="policy-writing" aria-labelledby="policy-writing-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="policy-writing-heading">Policy writing</h2>
+      <ol class="pub-list">
+        {policyWriting.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--light pub-category" id="profiles" aria-labelledby="profiles-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="profiles-heading">Research profiles</h2>
+      <ul class="profiles__list" role="list">
+        {
+          researchProfiles.map((item) => (
+            <li>
+              <a href={item.url}>
+                {item.label}<span aria-hidden="true">&#8599;</span><span class="visually-hidden"> (external link)</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pub-header {
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .pub-header__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 0 0 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .pub-header__eyebrow::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background-color: var(--accent);
+  }
+
+  .pub-header__heading {
+    max-width: 24ch;
+    font-size: clamp(2rem, 4.2vw, 2.9rem);
+    letter-spacing: -0.01em;
+  }
+
+  .pub-header__intro {
+    max-width: var(--measure);
+    margin: 1.5rem 0 0;
+    font-size: 1.1rem;
+  }
+
+  .pub-header__back {
+    margin: 1.25rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .pub-header__nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .pub-header__nav a {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .pub-category {
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+
+  .pub-category__heading {
+    font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Featured book */
+  .book-feature {
+    padding: 1.75rem 0 2rem;
+    border-top: 1px solid var(--rule);
+    max-width: 46rem;
+  }
+
+  .book-feature__year {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .book-feature__title {
+    margin-top: 0.5rem;
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    line-height: 1.25;
+    color: var(--text);
+    overflow-wrap: break-word;
+  }
+
+  .book-feature__subtitle {
+    font-weight: 400;
+  }
+
+  .book-feature__authors {
+    margin: 0.7rem 0 0;
+    font-size: 0.98rem;
+    color: var(--text-muted);
+  }
+
+  .book-feature__meta {
+    margin: 0.4rem 0 0;
+    font-size: 0.98rem;
+    overflow-wrap: anywhere;
+  }
+
+  .book-feature__description {
+    margin: 1.1rem 0 0;
+    max-width: var(--measure);
+    color: var(--text-muted);
+  }
+
+  .book-feature__links,
+  .book-edition__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 1rem 0 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .book-edition {
+    margin-top: 2rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+  }
+
+  .book-edition__label {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .book-edition__title {
+    margin: 0.6rem 0 0;
+    font-size: 1.05rem;
+    color: var(--text);
+    overflow-wrap: break-word;
+  }
+
+  .book-edition__meta {
+    margin: 0.35rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  /* Reviews and reception */
+  .reviews {
+    margin-top: 1rem;
+    max-width: 46rem;
+  }
+
+  .reviews__heading {
+    font-size: 1.3rem;
+    color: var(--text);
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .reviews__group {
+    margin: 1.75rem 0 0;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .reviews__list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+
+  .reviews__list li {
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .reviews__line {
+    margin: 0;
+    color: var(--text);
+    overflow-wrap: anywhere;
+  }
+
+  .reviews__note {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  .reviews__link {
+    margin: 0.4rem 0 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  /* Research profiles */
+  .profiles__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--rule);
+    font-weight: 600;
+  }
+</style>

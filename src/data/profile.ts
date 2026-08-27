@@ -245,7 +245,7 @@ export const profile: ProfileContent = {
     copy: 'I welcome inquiries about senior AI and risk roles, university teaching, and research or policy collaboration.',
   },
   publications: {
-    enabled: false,
+    enabled: true,
     route: '/publications/',
     source: 'manual',
   },

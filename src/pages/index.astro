@@ -118,6 +118,15 @@ const contactLinks: ContactLink[] = [
           ))
         }
       </div>
+      {
+        profile.publications.enabled && (
+          <p class="research__more">
+            <a href={profile.publications.route}>
+              View all publications<span aria-hidden="true"> &rarr;</span>
+            </a>
+          </p>
+        )
+      }
     </div>
   </section>
 
@@ -155,6 +164,14 @@ const contactLinks: ContactLink[] = [
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
     gap: clamp(1.5rem, 3vw, 2.25rem);
     margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .research__more {
+    margin: 0.5rem 0 0;
+  }
+
+  .research__more a {
+    font-weight: 600;
   }
 
   .contact__heading {
