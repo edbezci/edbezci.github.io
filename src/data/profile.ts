@@ -233,7 +233,7 @@ export const profile: ProfileContent = {
   },
   contact: {
     heading: 'Contact',
-    copy: 'Please reach me at egemen@aethernix.com. I welcome inquiries concerning advisory or fractional leadership work, university and professional teaching, speaking, and research and policy collaboration.',
+    copy: 'I welcome inquiries concerning advisory or fractional leadership work, university and professional teaching, speaking, and research and policy collaboration.',
   },
   publications: {
     enabled: true,
