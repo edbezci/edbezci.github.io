@@ -198,5 +198,21 @@ const contactLinks: ContactLink[] = [
 
   .contact__links a {
     font-weight: 600;
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .contact__links a:hover,
+  .contact__links a:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .research__more a {
+    display: inline-block;
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .research__more a:hover,
+  .research__more a:focus-visible {
+    transform: translateY(-1px);
   }
 </style>

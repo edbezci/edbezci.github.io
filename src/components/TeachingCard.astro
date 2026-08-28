@@ -36,10 +36,14 @@ const { entry } = Astro.props;
     background-color: #faf8f2;
     border: 1px solid var(--rule);
     border-top: 2px solid var(--accent);
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 200ms ease, box-shadow 200ms ease;
   }
 
-  .teaching-card:hover {
+  .teaching-card:hover,
+  .teaching-card:focus-within {
     border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
   }
 
   .teaching-card__title {

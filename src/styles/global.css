@@ -92,6 +92,22 @@ a {
   border-radius: 2px;
 }
 
+/* Subtle entrance animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-entrance {
+  animation: fade-in-up 300ms ease-out forwards;
+}
+
 /* Subtle transitions only; disabled when reduced motion is preferred. */
 a,
 .button,
@@ -109,6 +125,12 @@ a,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-entrance {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {
@@ -116,6 +138,7 @@ a,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
   html {
     scroll-behavior: auto;
   }

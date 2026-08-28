@@ -112,11 +112,11 @@ export interface ProfileContent {
 export const profile: ProfileContent = {
   name: 'Egemen Bezci, PhD',
   shortName: 'Egemen Bezci',
-  headline: 'AI Decision Systems, Risk and Intelligence',
+  headline: 'AI and Risk Decision Systems',
   heroIntro:
-    'I build and govern AI-enabled systems for decisions involving risk, incomplete evidence and human judgement. My work spans regulated financial services, fraud prevention and intelligence analysis. I also teach applied data science and publish on intelligence and international security.',
+    'I design and govern AI-enabled systems for decisions with financial, operational or public consequences. My work combines regulated financial services, applied data science, university teaching and research on intelligence and security.',
   heroAction: {
-    label: 'Explore my work',
+    label: 'View selected work',
     href: '#industry',
   },
   positioningLine: [
@@ -126,9 +126,9 @@ export const profile: ProfileContent = {
     'Intelligence research',
   ],
   seo: {
-    title: 'Egemen Bezci, PhD | AI Decision Systems, Risk and Intelligence',
+    title: 'Egemen Bezci, PhD | AI and Risk Decision Systems',
     description:
-      'Egemen Bezci works across AI-enabled decision systems, regulated risk, fraud prevention, applied data science teaching and intelligence research.',
+      'Egemen Bezci designs and governs AI-enabled decision systems across regulated financial services, applied data science, university teaching and intelligence research.',
   },
   links: {
     email: 'egemen@aethernix.com',
@@ -138,51 +138,48 @@ export const profile: ProfileContent = {
   },
   profile: {
     label: 'Profile',
-    heading: 'An international career across research and applied data science',
+    heading: 'Research and applied data science',
     paragraphs: [
-      'I began my career as a scholar of intelligence and international security, with a PhD from the University of Nottingham. My research has taken me across Europe, North America and Asia. I later moved into applied data science and machine learning in Canada and Germany. My work has covered academic research, scientific evidence synthesis, government and defence projects, and regulated financial services.',
-      'These fields may appear separate, but they pose the same basic problem. Evidence is incomplete, interpretations differ and decisions still have to be made. A model can help, but it cannot bear responsibility. People must understand what it shows, where it may fail and when its output should be challenged.',
+      'I hold a PhD from the University of Nottingham and researched intelligence and international security across Europe, North America and Asia. I later moved into applied data science in Canada and Germany, across scientific evidence, government and defence, and regulated financial services.',
+      'Evidence is always incomplete, models are only one part of a decision system, and AI outputs require interpretation, monitoring, governance and human judgement. A model can help, but it cannot bear responsibility.',
     ],
     areas: [
       {
         title: 'AI and decision systems',
         description:
-          'Building machine-learning systems around the decisions people must make, rather than treating the model as an end in itself.',
+          'Building machine-learning systems around human decisions.',
       },
       {
         title: 'Risk, fraud and governance',
         description:
-          'Connecting fraud and risk models with monitoring, operational controls and human review.',
+          'Connecting models with monitoring, controls and review.',
       },
       {
         title: 'Intelligence and professional education',
         description:
-          'Bringing research, quantitative methods and computational analysis into intelligence studies and professional teaching.',
+          'Bringing quantitative methods into intelligence studies and teaching.',
       },
     ],
   },
   industry: {
     label: 'Industry and applied data science',
-    heading: 'Applied data science across evidence, security and risk',
+    heading: 'From scientific evidence to regulated financial services',
     paragraphs: [
-      'My industry work began with scientific evidence review, where I built classification and data-processing systems for quality-sensitive workflows. These systems helped researchers organise and assess complex source material while preserving the documentation required for review.',
-      'I then developed natural-language processing and advanced analytics for government and defence-oriented clients. The work included classification, clustering, sentiment analysis and entity extraction. I also helped design an analyst-centred AI project for countering cognitive warfare. The project was selected as a finalist in NATO’s Innovation Challenge.',
-      'In regulated financial services, I progressed to principal-level responsibility for fraud prevention, financial risk and operational decision support. I built an internal human-in-the-loop fraud capability that replaced reliance on an external provider. I also established monitoring and reporting frameworks and worked across product, operations, legal, compliance and executive functions.',
-      'As the responsibility grew, the task was no longer only to build models. It was also to determine how they should be tested, monitored, explained and used. An AI-enabled system works only when its technical components and human processes work together.',
+      'I began with scientific evidence and NLP, building classification and data-processing systems for quality-sensitive workflows. I then developed analytics for government and defence, including an analyst-centred AI project for countering cognitive warfare selected as a finalist in NATO\u2019s Innovation Challenge. In regulated financial services I progressed to principal-level responsibility for fraud prevention and risk, building an internal human-in-the-loop fraud capability that replaced reliance on an external provider, and establishing monitoring, reporting and governance arrangements across product, operations, legal, compliance and executive functions.',
     ],
   },
   teaching: {
-    label: 'Teaching portfolio',
-    heading: 'Teaching methods and judgement',
+    label: 'Selected teaching portfolio',
+    heading: 'Teaching',
     intro:
-      'I teach data science, machine learning and quantitative methods to master’s students and working professionals. Learning how to run a method is not enough. Students must also understand what it can show, what it leaves out and how its results should be used.',
+      'I teach data science and machine learning to master\u2019s students and working professionals. Students must understand what a method can show, what it leaves out and how its results should be used.',
     entries: [
       {
         title: 'Data Science and Data Intelligence',
-        institution: 'Universität für Weiterbildung Krems',
+        institution: 'Universit\u00e4t f\u00fcr Weiterbildung Krems',
         location: 'Krems an der Donau, Austria',
         description:
-          'A master’s-level course in quantitative and computational methods for intelligence and counter-terrorism. Students work with data while examining uncertainty, interpretation and the role of professional judgement.',
+          'A master\u2019s course in quantitative methods for intelligence and counter-terrorism, examining uncertainty, interpretation and professional judgement.',
         repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems',
         linkLabel: 'Explore course repository',
       },
@@ -191,7 +188,7 @@ export const profile: ProfileContent = {
         institution: 'National Sun Yat-sen University',
         location: 'Kaohsiung, Taiwan',
         description:
-          'A practical introduction to natural-language processing for political and social researchers. The workshop covers how to prepare, analyse and interpret textual evidence.',
+          'A practical introduction to natural-language processing for political and social researchers.',
         repositoryUrl: 'https://github.com/edbezci/workshop_nlp_research',
         linkLabel: 'Explore workshop',
       },
@@ -200,7 +197,7 @@ export const profile: ProfileContent = {
         institution: 'National Sun Yat-sen University',
         location: 'Kaohsiung, Taiwan',
         description:
-          'An introduction to clustering through the analysis of greenhouse-gas emissions. The workshop examines how methodological choices shape the patterns we find and the conclusions we draw from them.',
+          'An introduction to clustering through greenhouse-gas emissions analysis and methodological choice.',
         repositoryUrl: 'https://github.com/edbezci/workshop_greenhousegas_emissions_clustering',
         linkLabel: 'Explore workshop',
       },
@@ -208,41 +205,35 @@ export const profile: ProfileContent = {
   },
   research: {
     label: 'Research and public engagement',
-    heading: 'Research on intelligence and international security',
+    heading: 'Intelligence and international security',
     paragraphs: [
       [
         'My academic work focuses on intelligence studies. I am the author of ',
         {
           cite: 'Turkish Intelligence and the Cold War: The Turkish Secret Service, the US and the UK',
         },
-        ', published by Bloomsbury. The book was reviewed in the CIA’s professional journal, ',
+        ', published by Bloomsbury and reviewed in the CIA\u2019s ',
         { cite: 'Studies in Intelligence' },
-        '.',
-      ],
-      [
-        'My research has appeared in ',
+        '. My research has appeared in ',
         { cite: 'The Pacific Review' },
         ', ',
         { cite: 'Middle Eastern Studies' },
         ' and the ',
         { cite: 'Journal of Intelligence History' },
-        '. My policy writing has appeared in ',
+        ', and my policy writing in ',
         { cite: 'War on the Rocks' },
         ' and ',
         { cite: 'The National Interest' },
-        '. I have also contributed chapters to volumes published by Georgetown University Press, Stanford University Press and Routledge.',
+        '.',
       ],
       [
-        'I continue this work alongside my applied data science career. I am a Lecturer at Universität für Weiterbildung Krems and a Non-Resident Senior Fellow at the University of South Florida Global and National Security Institute. I was elected a Fellow of the Royal Historical Society.',
-      ],
-      [
-        'My teaching and public engagement increasingly connect intelligence studies with applied data science. At Germany’s Federal Foreign Office, I presented on the use of large language models in crisis early warning. At EuroSciPy, I presented work on the computational analysis of diplomatic archives.',
+        'I am a Lecturer at Universit\u00e4t f\u00fcr Weiterbildung Krems, a Non-Resident Senior Fellow at USF\u2019s Global and National Security Institute, and a Fellow of the Royal Historical Society. I have presented on applied data science at Germany\u2019s Federal Foreign Office and EuroSciPy.',
       ],
     ],
   },
   contact: {
-    heading: 'Conversations on AI, risk and intelligence',
-    copy: 'I welcome inquiries about senior AI and risk roles, university teaching, and research or policy collaboration.',
+    heading: 'Contact',
+    copy: 'Please reach me at egemen@aethernix.com. I welcome inquiries concerning advisory or fractional leadership work, university and professional teaching, speaking, and research and policy collaboration.',
   },
   publications: {
     enabled: true,
