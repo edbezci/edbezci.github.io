@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { research } from '../data/research';
+
+const { page, seo } = research;
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <PageHeader label={page.label} heading={page.heading} />
+
+  <section class="section section--light page-section" aria-labelledby="research-profile-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="research-profile-heading">Research profile</h2>
+      <div class="prose">
+        {page.profileParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light page-section" aria-labelledby="affiliations-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="affiliations-heading">
+        Current affiliations
+      </h2>
+      <ul class="role-list" role="list">
+        {
+          research.affiliations.map((item) => (
+            <li>
+              <span class="role-list__role">{item.role}</span>, {item.organisation}
+              {item.period && <span class="role-list__detail"> · {item.period}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--light page-section" aria-labelledby="book-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="book-heading">Book</h2>
+      <div class="prose">
+        {
+          research.book.paragraphs.map((paragraph) => (
+            <p>
+              {paragraph.map((segment) =>
+                typeof segment === 'string' ? (
+                  segment
+                ) : (
+                  <cite>{segment.cite}</cite>
+                ),
+              )}
+            </p>
+          ))
+        }
+      </div>
+      <p class="section-cta">
+        <a href={research.book.cta.href}>
+          {research.book.cta.label}<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light page-section" aria-labelledby="support-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="support-heading">
+        Research support, fellowships and grants
+      </h2>
+      <ul class="role-list" role="list">
+        {
+          research.grants.map((grant) => (
+            <li>
+              <span class="role-list__role">{grant.label}</span>
+              <span class="role-list__detail"> · {grant.period}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

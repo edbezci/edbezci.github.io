@@ -11,10 +11,17 @@ Built with [Astro](https://astro.build) and TypeScript as a fully static site. N
 ```
 ├── public/                  # Static assets (robots.txt, favicon)
 ├── src/
-│   ├── data/profile.ts      # All site content (typed, single source of truth)
+│   ├── data/                # Typed content, one module per domain
+│   │   ├── profile.ts       # Identity, hero, roles, contact, navigation, SEO
+│   │   ├── industry.ts      # Industry cases and the complete Industry page
+│   │   ├── teaching.ts      # Current/previous teaching, professional education, workshops
+│   │   ├── events.ts        # Speaking and events (status, role, dates, URL, title)
+│   │   ├── research.ts      # Research profile, affiliations, book, grants
+│   │   └── publications.ts  # Manually curated publication record
 │   ├── layouts/BaseLayout.astro
-│   ├── components/          # Header, hero, section heading, teaching card, footer
-│   ├── pages/index.astro    # Homepage
+│   ├── components/          # Header, hero, page header, section heading, event item, footer
+│   ├── pages/               # /, /profile/, /industry/, /teaching-speaking/,
+│   │                        # /research/, /publications/, /contact/
 │   └── styles/global.css    # Design tokens and base styles
 ├── astro.config.mjs         # Static output, site URL, sitemap
 └── .github/workflows/       # GitHub Pages deployment
@@ -22,11 +29,9 @@ Built with [Astro](https://astro.build) and TypeScript as a fully static site. N
 
 ## Editing content
 
-All profile copy, links, teaching entries and SEO metadata live in `src/data/profile.ts`, validated against TypeScript interfaces. Components render from that file only; do not hard-code copy in components.
+All copy lives in the typed data modules under `src/data/`, validated against TypeScript interfaces. Components render from those modules only; do not hard-code copy in components. Factual entries (industry cases, courses, events, affiliations, grants) are defined once and reused by the homepage and the complete pages.
 
-Optional link fields (`orcid`, `resume`) are left undefined until a confirmed URL exists; empty fields are not rendered.
-
-A future `/publications/` route is reserved via `profile.publications` (`enabled: false`). While disabled, no page is built and no navigation link appears.
+Optional link fields are left undefined until a confirmed URL exists; empty fields are not rendered. No CV or résumé link appears anywhere on the site. Event `presentationTitle` fields remain undefined until an official title has been supplied.
 
 ## Local development
 

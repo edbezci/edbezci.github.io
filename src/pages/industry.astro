@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { industry } from '../data/industry';
+
+const { page, seo } = industry;
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <PageHeader label={page.label} heading={page.heading} intro={page.intro} />
+
+  {
+    page.sections.map((section) => (
+      <section
+        class="section section--light page-section"
+        aria-labelledby={`${section.id}-heading`}
+      >
+        <div class="container">
+          <h2 class="page-section__heading" id={`${section.id}-heading`}>
+            {section.heading}
+          </h2>
+          {section.paragraphs && (
+            <div class="prose">
+              {section.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+          )}
+          {section.subsections?.map((subsection) => (
+            <div class="subsection">
+              <h3 class="page-section__subheading">{subsection.heading}</h3>
+              <div class="prose">
+                {subsection.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+              {subsection.list && (
+                <>
+                  <p class="subsection__listintro">{subsection.listIntro}</p>
+                  <ul class="subsection__list">
+                    {subsection.list.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              {subsection.link && (
+                <p class="subsection__link">
+                  <a
+                    href={subsection.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit {subsection.link.label}
+                    <span aria-hidden="true"> &#8599;</span>
+                    <span class="visually-hidden"> (opens in a new tab)</span>
+                  </a>
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section section--light page-section" aria-labelledby="closing-heading">
+    <div class="container">
+      <h2 class="page-section__heading visually-hidden" id="closing-heading">
+        Closing perspective
+      </h2>
+      <div class="prose">
+        <p>{page.closing}</p>
+      </div>
+      <p class="section-cta">
+        <a href={page.cta.href}>
+          {page.cta.label}<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .subsection {
+    margin-top: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .subsection__listintro {
+    margin: 0 0 0.5rem;
+  }
+
+  .subsection__list {
+    margin: 0;
+    padding-left: 1.25rem;
+    max-width: var(--measure);
+  }
+
+  .subsection__list li {
+    padding: 0.2rem 0;
+  }
+
+  .subsection__link {
+    margin: 1.25rem 0 0;
+    font-weight: 600;
+  }
+</style>

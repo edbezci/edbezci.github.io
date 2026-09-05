@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { profile, AETHERNIX_URL } from '../data/profile';
+
+const { contactPage } = profile;
+
+interface ContactLink {
+  label: string;
+  href: string;
+  external: boolean;
+}
+
+const contactLinks: ContactLink[] = [
+  profile.links.email && {
+    label: `Email: ${profile.links.email}`,
+    href: `mailto:${profile.links.email}`,
+    external: false,
+  },
+  profile.links.linkedin && {
+    label: 'LinkedIn',
+    href: profile.links.linkedin,
+    external: true,
+  },
+  profile.links.github && {
+    label: 'GitHub',
+    href: profile.links.github,
+    external: true,
+  },
+  {
+    label: 'Aethernix',
+    href: AETHERNIX_URL,
+    external: true,
+  },
+].filter((link): link is ContactLink => Boolean(link));
+---
+
+<BaseLayout title={contactPage.seo.title} description={contactPage.seo.description}>
+  <PageHeader label={contactPage.label} heading={contactPage.heading} />
+
+  <section class="section section--light page-section" aria-labelledby="inquiries-heading">
+    <div class="container">
+      <h2 class="page-section__heading visually-hidden" id="inquiries-heading">
+        Forms of collaboration
+      </h2>
+      <div class="prose">
+        <p>{contactPage.intro}</p>
+        <ul class="areas-list">
+          {contactPage.areas.map((area) => <li>{area}</li>)}
+        </ul>
+        <p>{contactPage.emailNote}</p>
+      </div>
+      <ul class="contact-links" role="list">
+        {
+          contactLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
+              >
+                {link.label}
+                {link.external && (
+                  <span class="visually-hidden"> (opens in a new tab)</span>
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .areas-list {
+    margin: 0 0 1.25em;
+    padding-left: 1.25rem;
+  }
+
+  .areas-list li {
+    padding: 0.2rem 0;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    list-style: none;
+    margin: 2.25rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--rule);
+    font-weight: 600;
+  }
+
+  .contact-links a {
+    display: inline-block;
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .contact-links a:hover,
+  .contact-links a:focus-visible {
+    transform: translateY(-1px);
+  }
+</style>

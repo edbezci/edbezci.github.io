@@ -12,15 +12,8 @@ import portrait from '../assets/egemen-photo-2026.png';
       <p class="hero__intro">{profile.heroIntro}</p>
       <div class="hero__actions">
         <a class="button" href={profile.heroAction.href}>{profile.heroAction.label}</a>
-        {
-          profile.links.resume && (
-            <a class="button button--ghost" href={profile.links.resume}>
-              View résumé
-            </a>
-          )
-        }
       </div>
-      <p class="hero__positioning">{profile.positioningLine.join(' · ')}</p>
+      <p class="hero__positioning">{profile.identityLine}</p>
     </div>
     <div class="hero__portrait hero-entrance">
       <Image
@@ -111,17 +104,6 @@ import portrait from '../assets/egemen-photo-2026.png';
   .button:hover {
     background-color: var(--accent);
     color: var(--navy);
-  }
-
-  .button--ghost {
-    border-color: var(--rule);
-    color: var(--text-muted);
-  }
-
-  .button--ghost:hover {
-    background-color: transparent;
-    border-color: var(--accent);
-    color: var(--accent);
   }
 
   .hero__positioning {

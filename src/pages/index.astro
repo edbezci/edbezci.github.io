@@ -2,8 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import TeachingCard from '../components/TeachingCard.astro';
+import EventItem from '../components/EventItem.astro';
 import { profile } from '../data/profile';
+import { industry } from '../data/industry';
+import { teaching } from '../data/teaching';
+import { research } from '../data/research';
+import { upcomingEvents } from '../data/events';
 
 interface ContactLink {
   label: string;
@@ -28,42 +32,69 @@ const contactLinks: ContactLink[] = [
     href: profile.links.github,
     external: true,
   },
-  profile.links.orcid && {
-    label: 'ORCID',
-    href: profile.links.orcid,
-    external: true,
-  },
-  profile.links.resume && {
-    label: 'Résumé',
-    href: profile.links.resume,
-    external: true,
-  },
 ].filter((link): link is ContactLink => Boolean(link));
+
+const featuredCase = industry.home.featured;
+const supportingCases = industry.home.supporting;
+const currentCourses = teaching.current[0].courses;
+const nextEvent = upcomingEvents[0];
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.shortName,
+  honorificSuffix: 'PhD',
+  url: 'https://edbezci.github.io/',
+  description: profile.seo.description,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Aethernix',
+    url: 'https://aethernix.com',
+  },
+  affiliation: [
+    { '@type': 'Organization', name: 'Universität für Weiterbildung Krems' },
+    {
+      '@type': 'Organization',
+      name: 'Global and National Security Institute, University of South Florida',
+    },
+    { '@type': 'Organization', name: 'Royal Historical Society' },
+  ],
+  sameAs: [
+    profile.links.linkedin,
+    profile.links.github,
+    profile.links.orcid,
+    profile.links.googleScholar,
+  ].filter((url): url is string => Boolean(url)),
+};
 ---
 
 <BaseLayout>
+  <script
+    is:inline
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(personJsonLd)}
+  />
   <Hero />
 
   <section class="section section--light" id="profile" aria-labelledby="profile-heading">
     <div class="container">
       <SectionHeading
         id="profile-heading"
-        label={profile.profile.label}
-        heading={profile.profile.heading}
+        label={profile.homeProfile.label}
+        heading={profile.homeProfile.heading}
       />
       <div class="prose">
-        {profile.profile.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {profile.homeProfile.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
       </div>
-      <div class="columns">
-        {
-          profile.profile.areas.map((area) => (
-            <div>
-              <h3>{area.title}</h3>
-              <p>{area.description}</p>
-            </div>
-          ))
-        }
-      </div>
+      <blockquote class="pullquote">
+        <p>&ldquo;{profile.homeProfile.pullQuote}&rdquo;</p>
+      </blockquote>
+      <p class="section-cta">
+        <a href={profile.homeProfile.cta.href}>
+          {profile.homeProfile.cta.label}<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
     </div>
   </section>
 
@@ -71,12 +102,41 @@ const contactLinks: ContactLink[] = [
     <div class="container">
       <SectionHeading
         id="industry-heading"
-        label={profile.industry.label}
-        heading={profile.industry.heading}
+        label={industry.home.label}
+        heading={industry.home.heading}
       />
       <div class="prose">
-        {profile.industry.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <p>{industry.home.intro}</p>
       </div>
+      <article class="case-feature">
+        <p class="kicker">Featured case</p>
+        <h3 class="case-feature__title">{featuredCase.title}</h3>
+        {featuredCase.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </article>
+      <div class="columns">
+        {
+          supportingCases.map((item) => (
+            <div>
+              <h3>
+                {item.link ? (
+                  <a href={item.link.href} target="_blank" rel="noopener noreferrer">
+                    {item.title}
+                    <span class="visually-hidden"> (opens in a new tab)</span>
+                  </a>
+                ) : (
+                  item.title
+                )}
+              </h3>
+              {item.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          ))
+        }
+      </div>
+      <p class="section-cta">
+        <a href={industry.home.cta.href}>
+          {industry.home.cta.label}<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
     </div>
   </section>
 
@@ -84,15 +144,31 @@ const contactLinks: ContactLink[] = [
     <div class="container">
       <SectionHeading
         id="teaching-heading"
-        label={profile.teaching.label}
-        heading={profile.teaching.heading}
+        label={teaching.home.label}
+        heading={teaching.home.heading}
       />
       <div class="prose">
-        <p>{profile.teaching.intro}</p>
+        <p>{teaching.home.intro}</p>
       </div>
-      <div class="teaching-grid">
-        {profile.teaching.entries.map((entry) => <TeachingCard entry={entry} />)}
+      <div class="home-courses">
+        {
+          currentCourses.map((course) => (
+            <div class="home-course">
+              <h3>{course.title}</h3>
+              <p>{course.homeNote}</p>
+            </div>
+          ))
+        }
       </div>
+      <div class="home-event">
+        <EventItem event={nextEvent} />
+        <p class="home-event__note">{teaching.home.attendNote}</p>
+      </div>
+      <p class="section-cta">
+        <a href={teaching.home.cta.href}>
+          {teaching.home.cta.label}<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
     </div>
   </section>
 
@@ -100,12 +176,12 @@ const contactLinks: ContactLink[] = [
     <div class="container">
       <SectionHeading
         id="research-heading"
-        label={profile.research.label}
-        heading={profile.research.heading}
+        label={research.home.label}
+        heading={research.home.heading}
       />
       <div class="prose">
         {
-          profile.research.paragraphs.map((paragraph) => (
+          research.home.paragraphs.map((paragraph) => (
             <p>
               {paragraph.map((segment) =>
                 typeof segment === 'string' ? (
@@ -118,22 +194,22 @@ const contactLinks: ContactLink[] = [
           ))
         }
       </div>
-      {
-        profile.publications.enabled && (
-          <p class="research__more">
-            <a href={profile.publications.route}>
-              View all publications<span aria-hidden="true"> &rarr;</span>
+      <p class="section-cta">
+        {
+          research.home.ctas.map((cta) => (
+            <a href={cta.href}>
+              {cta.label}<span aria-hidden="true"> &rarr;</span>
             </a>
-          </p>
-        )
-      }
+          ))
+        }
+      </p>
     </div>
   </section>
 
   <section class="section section--dark" id="contact" aria-labelledby="contact-heading">
     <div class="container">
-      <h2 class="contact__heading" id="contact-heading">{profile.contact.heading}</h2>
-      <p class="contact__copy">{profile.contact.copy}</p>
+      <h2 class="contact__heading" id="contact-heading">{profile.homeContact.heading}</h2>
+      <p class="contact__copy">{profile.homeContact.copy}</p>
       {
         contactLinks.length > 0 && (
           <ul class="contact__links">
@@ -154,24 +230,79 @@ const contactLinks: ContactLink[] = [
           </ul>
         )
       }
+      <p class="section-cta">
+        <a href={profile.homeContact.cta.href}>
+          {profile.homeContact.cta.label}<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .teaching-grid {
+  .case-feature {
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--accent);
+  }
+
+  .case-feature__title {
+    font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+    color: var(--text);
+    margin: 0 0 1.25rem;
+  }
+
+  .case-feature p:not(.kicker) {
+    max-width: var(--measure);
+    color: var(--text-muted);
+  }
+
+  .case-feature p:last-child {
+    margin-bottom: 0;
+  }
+
+  .columns h3 a {
+    color: inherit;
+    text-decoration-color: var(--accent);
+  }
+
+  .columns h3 a:hover,
+  .columns h3 a:focus-visible {
+    color: var(--accent);
+  }
+
+  .home-courses {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-    gap: clamp(1.5rem, 3vw, 2.25rem);
+    gap: clamp(1.75rem, 3.5vw, 2.75rem);
     margin-top: clamp(2.5rem, 5vw, 3.5rem);
   }
 
-  .research__more {
-    margin: 0.5rem 0 0;
+  .home-course {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
   }
 
-  .research__more a {
-    font-weight: 600;
+  .home-course h3 {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .home-course p {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    margin-bottom: 0;
+  }
+
+  .home-event {
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .home-event__note {
+    margin: 1rem 0 0;
+    color: var(--text-muted);
   }
 
   .contact__heading {
@@ -182,7 +313,7 @@ const contactLinks: ContactLink[] = [
 
   .contact__copy {
     max-width: var(--measure);
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 0;
     color: var(--text-muted);
   }
 
@@ -203,16 +334,6 @@ const contactLinks: ContactLink[] = [
 
   .contact__links a:hover,
   .contact__links a:focus-visible {
-    transform: translateY(-1px);
-  }
-
-  .research__more a {
-    display: inline-block;
-    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
-  }
-
-  .research__more a:hover,
-  .research__more a:focus-visible {
     transform: translateY(-1px);
   }
 </style>

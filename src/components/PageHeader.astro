@@ -1,0 +1,55 @@
+---
+interface Props {
+  label: string;
+  heading: string;
+  intro?: string;
+}
+
+const { label, heading, intro } = Astro.props;
+---
+
+<section class="section section--light page-header" aria-labelledby="page-heading">
+  <div class="container">
+    <p class="page-header__eyebrow">{label}</p>
+    <h1 class="page-header__heading" id="page-heading">{heading}</h1>
+    {intro && <p class="page-header__intro">{intro}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .page-header__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 0 0 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .page-header__eyebrow::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background-color: var(--accent);
+  }
+
+  .page-header__heading {
+    max-width: 24ch;
+    font-size: clamp(2rem, 4.2vw, 2.9rem);
+    letter-spacing: -0.01em;
+  }
+
+  .page-header__intro {
+    max-width: var(--measure);
+    margin: 1.5rem 0 0;
+    font-size: 1.1rem;
+  }
+</style>

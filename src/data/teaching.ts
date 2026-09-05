@@ -1,0 +1,179 @@
+/**
+ * Teaching content: current and previous university teaching,
+ * professional education, and workshops with teaching materials.
+ *
+ * Repository links are only set where the URL has been verified.
+ * Courses at Universität für Weiterbildung Krems are recurring
+ * appointments beginning in 2025, not one-off engagements.
+ */
+
+import type { CtaLink, SeoMetadata } from './profile';
+
+export interface Course {
+  title: string;
+  /** e.g. 'Graduate Research Seminar', 'Undergraduate Module'. */
+  kind?: string;
+  /** Teaching period for previous appointments, e.g. '2018–2020'. */
+  period?: string;
+  /** Recurrence and delivery note for current teaching. */
+  note?: string;
+  /** Shorter note variant used on the homepage. */
+  homeNote?: string;
+  repositoryUrl?: string;
+}
+
+export interface TeachingInstitution {
+  institution: string;
+  role?: string;
+  period?: string;
+  description?: string;
+  courses: Course[];
+}
+
+const current: TeachingInstitution[] = [
+    {
+  institution: 'Universität für Weiterbildung Krems',
+  role: 'Lecturer',
+  period: '2025–present',
+  description:
+    'Designs and teaches recurring graduate and professional courses connecting quantitative methods, data science and intelligence analysis with uncertainty, interpretation and professional judgement.',
+  courses: [
+    {
+      title: 'Quantitative Methods for Intelligence and Counter-Terrorism',
+      note: 'Recurring graduate/professional course; most recently delivered 29–31 May 2026.',
+      homeNote:
+        'Recurring graduate and professional course. Most recently delivered in May 2026.',
+      repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems',
+    },
+    {
+      title: 'Data Science and Data Intelligence I & II',
+      note: 'Recurring graduate teaching; next scheduled delivery 15–17 January 2027.',
+      homeNote:
+        'Recurring graduate teaching. The next delivery is scheduled for January 2027.',
+    },
+  ],
+    },
+];
+
+const previous: TeachingInstitution[] = [
+    {
+  institution: 'National Sun Yat-sen University, Taiwan',
+  courses: [
+    {
+      title: 'Politics and Economy of Climate Change',
+      kind: 'Graduate Research Seminar',
+      period: '2018–2020',
+    },
+    {
+      title: 'Python Journalism: Using Machine Learning for Social Sciences',
+      kind: 'Graduate Research Seminar',
+      period: '2018–2020',
+    },
+  ],
+    },
+    {
+  institution: 'Stockholm University, Sweden',
+  courses: [
+    {
+      title: 'Human Rights in the Middle East, Turkey and East Asia',
+      kind: 'Graduate Module',
+      period: '2016–2017',
+    },
+    {
+      title: 'Middle Eastern and North African Politics and Economy',
+      kind: 'Undergraduate Module',
+      period: '2016–2017',
+    },
+    {
+      title: 'Area Studies: Theory and Method',
+      kind: 'Graduate Module',
+      period: '2016–2017',
+    },
+  ],
+    },
+    {
+  institution: 'University of Nottingham, United Kingdom',
+  courses: [
+    {
+      title: 'Roads to Modernity: An Introduction to Modern History, 1789–1945',
+      kind: 'Undergraduate Module',
+      period: '2014–2016',
+    },
+    {
+      title: 'Understanding Global Politics',
+      kind: 'Undergraduate Module',
+      period: '2014–2016',
+    },
+  ],
+    },
+];
+
+const professional: TeachingInstitution[] = [
+    {
+  institution: 'Massey University, New Zealand',
+  courses: [
+    {
+      title: 'Pacific Security Dynamics',
+      kind: 'Professional Development Course for Military Officers',
+      period: '2017–2018',
+    },
+    {
+      title: 'Politics and Security',
+      kind: 'Professional Development Course for officers at the OSCE Academy in Bishkek',
+      period: '2017–2018',
+    },
+  ],
+    },
+];
+
+const workshops: Course[] = [
+    {
+  title: 'NLP for Political and Social Research',
+  period: 'National Sun Yat-sen University',
+  repositoryUrl: 'https://github.com/edbezci/workshop_nlp_research',
+    },
+    {
+  title: 'Clustering and Climate-Policy Analysis',
+  period: 'National Sun Yat-sen University',
+  repositoryUrl:
+    'https://github.com/edbezci/workshop_greenhousegas_emissions_clustering',
+    },
+];
+
+export const teaching = {
+  seo: {
+    title: 'Teaching and speaking | Egemen Bezci, PhD',
+    description:
+      'University and professional teaching by Egemen Bezci in data science, machine learning and quantitative methods, plus conference presentations, invited talks and upcoming events.',
+  } satisfies SeoMetadata,
+
+  /** Homepage Teaching & Speaking section. */
+  home: {
+    label: 'Teaching & Speaking',
+    heading: 'Methods, judgement and professional practice',
+    intro:
+      'Since 2025, I have taught recurring graduate and professional courses in data science, machine learning and quantitative methods at Universität für Weiterbildung Krems. My teaching examines not only how methods work, but what their outputs can support, what remains unresolved and how professional judgement should be exercised.',
+    attendNote:
+      'If you are attending the same conference, feel free to get in touch.',
+    cta: {
+      label: 'View teaching and speaking',
+      href: '/teaching-speaking/',
+    } satisfies CtaLink,
+  },
+
+  /** Complete Teaching & Speaking page. */
+  page: {
+    label: 'Teaching & Speaking',
+    heading: 'Teaching and speaking',
+    intro:
+      'My teaching connects technical methods with professional judgement. Students learn not only how a statistical or machine-learning method works, but what its outputs can support, what remains unresolved and how results should be communicated in high-stakes environments.',
+  },
+
+  current,
+
+  previous,
+
+  professional,
+
+  workshops,
+};

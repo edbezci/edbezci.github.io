@@ -20,8 +20,8 @@ const currentPath = Astro.url.pathname;
         {
           navigation.map((item) => {
             const isCurrent =
-              item.href === '/publications/' &&
-              currentPath.startsWith('/publications');
+              currentPath === item.href ||
+              (item.href !== '/' && currentPath.startsWith(item.href));
             return (
               <li>
                 <a href={item.href} aria-current={isCurrent ? 'page' : undefined}>

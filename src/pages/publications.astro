@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
 import PublicationEntry from '../components/PublicationEntry.astro';
 import { profile } from '../data/profile';
 import {
@@ -23,9 +24,9 @@ const description =
 const tabs = [
   { id: 'book', label: 'Book' },
   { id: 'chapters', label: 'Book chapters' },
-  { id: 'articles', label: 'Research articles' },
+  { id: 'articles', label: 'Peer-reviewed journal articles' },
   { id: 'editorial', label: 'Editorial and review essays' },
-  { id: 'policy-writing', label: 'Policy writing' },
+  { id: 'policy-writing', label: 'Policy writing and public commentary' },
 ];
 
 const featuredBook = book.find((entry) => entry.featured) ?? book[0];
@@ -124,33 +125,26 @@ const jsonLd = {
     slot="head"
     set:html={JSON.stringify(jsonLd)}
   />
-  <section class="section section--light pub-header" aria-labelledby="pub-heading">
-    <div class="container">
-      <p class="pub-header__eyebrow">Publications and writing</p>
-      <h1 class="pub-header__heading" id="pub-heading">
-        Research on intelligence, security and technological change
-      </h1>
-      <p class="pub-header__intro">
-        This page brings together my academic publications and policy writing on
-        intelligence, international security, political development, climate
-        security and applied data science.
-      </p>
-      <p class="pub-header__back">
-        <a href="/">← Return to profile homepage</a>
-      </p>
-      <nav class="pub-header__nav" aria-label="Publication categories">
-        <ul>
-          {
-            tabs.map((tab) => (
-              <li>
-                <a href={`#${tab.id}`}>{tab.label}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-    </div>
-  </section>
+  <PageHeader
+    label="Publications and writing"
+    heading="Research on intelligence, security and technological change"
+    intro="This page brings together my academic publications and policy writing on intelligence, international security, political development, climate security and applied data science."
+  >
+    <p class="pub-header__back">
+      <a href="/">← Return to homepage</a>
+    </p>
+    <nav class="pub-header__nav" aria-label="Publication categories">
+      <ul>
+        {
+          tabs.map((tab) => (
+            <li>
+              <a href={`#${tab.id}`}>{tab.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </PageHeader>
 
   <section class="section section--light pub-category" id="book" aria-labelledby="book-heading">
     <div class="container">
@@ -291,7 +285,7 @@ const jsonLd = {
 
   <section class="section section--light pub-category" id="articles" aria-labelledby="articles-heading">
     <div class="container">
-      <h2 class="pub-category__heading" id="articles-heading">Research articles</h2>
+      <h2 class="pub-category__heading" id="articles-heading">Peer-reviewed journal articles</h2>
       <ol class="pub-list">
         {articles.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
       </ol>
@@ -318,7 +312,7 @@ const jsonLd = {
 
   <section class="section section--light pub-category" id="policy-writing" aria-labelledby="policy-writing-heading">
     <div class="container">
-      <h2 class="pub-category__heading" id="policy-writing-heading">Policy writing</h2>
+      <h2 class="pub-category__heading" id="policy-writing-heading">Policy writing and public commentary</h2>
       <ol class="pub-list">
         {policyWriting.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
       </ol>
@@ -344,41 +338,6 @@ const jsonLd = {
 </BaseLayout>
 
 <style>
-  .pub-header {
-    padding-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  .pub-header__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    margin: 0 0 1.1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .pub-header__eyebrow::before {
-    content: '';
-    width: 2rem;
-    height: 1px;
-    background-color: var(--accent);
-  }
-
-  .pub-header__heading {
-    max-width: 24ch;
-    font-size: clamp(2rem, 4.2vw, 2.9rem);
-    letter-spacing: -0.01em;
-  }
-
-  .pub-header__intro {
-    max-width: var(--measure);
-    margin: 1.5rem 0 0;
-    font-size: 1.1rem;
-  }
-
   .pub-header__back {
     margin: 1.25rem 0 0;
     font-size: 0.95rem;

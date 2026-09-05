@@ -208,6 +208,94 @@ a,
   background-color: var(--slate);
 }
 
+/* Restrained pull quote. */
+.pullquote {
+  margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+  padding: 0 0 0 1.4rem;
+  border-left: 2px solid var(--accent);
+  max-width: 32rem;
+}
+
+.pullquote p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  line-height: 1.4;
+  color: var(--text);
+}
+
+/* Small caps label used inside sections (e.g. 'Featured case'). */
+.kicker {
+  margin: 0 0 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Section-level call-to-action links. */
+.section-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+}
+
+.section-cta a {
+  display: inline-block;
+  font-weight: 600;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.section-cta a:hover,
+.section-cta a:focus-visible {
+  transform: translateY(-1px);
+}
+
+/* Sub-page content sections. */
+.page-section {
+  padding: clamp(2.75rem, 5vw, 4.5rem) 0;
+}
+
+.page-section__heading {
+  font-size: clamp(1.45rem, 2.8vw, 1.85rem);
+  color: var(--text);
+  margin: 0 0 1.25rem;
+}
+
+.page-section__subheading {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin: 2rem 0 0.75rem;
+}
+
+/* Roles, affiliations and grants. */
+.role-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  max-width: 46rem;
+}
+
+.role-list li {
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.role-list__role {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.role-list__detail {
+  color: var(--text-muted);
+}
+
 /* Quiet editorial columns (profile areas, industry themes). */
 .columns {
   display: grid;

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { profile } from '../data/profile';
+
+const { profilePage, currentRoles } = profile;
+
+const contextualLinks = [
+  { label: 'Industry and advisory experience', href: '/industry/' },
+  { label: 'Teaching and speaking', href: '/teaching-speaking/' },
+  { label: 'Research and affiliations', href: '/research/' },
+  { label: 'Publications', href: '/publications/' },
+];
+---
+
+<BaseLayout title={profilePage.seo.title} description={profilePage.seo.description}>
+  <PageHeader label={profilePage.label} heading={profilePage.heading} />
+
+  <section class="section section--light page-section" aria-labelledby="profile-story-heading">
+    <div class="container">
+      <h2 class="page-section__heading visually-hidden" id="profile-story-heading">
+        Professional profile
+      </h2>
+      <div class="prose">
+        {profilePage.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light page-section" aria-labelledby="roles-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="roles-heading">Current roles</h2>
+      <ul class="role-list" role="list">
+        {
+          currentRoles.map((item) => (
+            <li>
+              <span class="role-list__role">{item.role}</span>, {item.organisation}
+              {item.period && <span class="role-list__detail"> · {item.period}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--light page-section" aria-labelledby="explore-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="explore-heading">Explore further</h2>
+      <ul class="explore-list" role="list">
+        {
+          contextualLinks.map((link) => (
+            <li>
+              <a href={link.href}>
+                {link.label}<span aria-hidden="true"> &rarr;</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .explore-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    font-weight: 600;
+  }
+</style>
