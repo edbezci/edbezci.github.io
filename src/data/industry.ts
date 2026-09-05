@@ -135,9 +135,9 @@ export const industry = {
   /** Homepage Industry section: one featured case, two supporting cases. */
   home: {
     label: 'Industry',
-    heading: 'Applied AI in high-stakes environments',
+    heading: 'From models to operational decisions',
     intro:
-      'My industry work focuses on the systems surrounding consequential decisions: models, rules, data, internal knowledge, human review, monitoring and operational control.',
+      'I turn models, business rules and internal knowledge into operational decision systems, with human review, monitoring and controls built in.',
     cta: {
       label: 'Explore industry experience',
       href: '/industry/',

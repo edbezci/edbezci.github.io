@@ -71,7 +71,7 @@ export const profile = {
   shortName: 'Egemen Bezci',
   headline: 'AI and Risk Decision Systems',
   heroIntro:
-    'I design and govern AI-enabled systems for decisions with financial, operational or public consequences. My work brings together machine learning, rules, internal knowledge and human judgement across financial risk, intelligence and other high-stakes environments.',
+    'I design and govern AI systems for high-stakes decisions in fraud prevention, risk management and intelligence analysis. My approach integrates machine learning, operational rules and institutional knowledge with human judgement.',
   identityLine:
     'Founder & Principal Consultant, Aethernix · Lecturer, Universität für Weiterbildung Krems · Non-Resident Senior Fellow, USF GNSI',
   heroAction: {
@@ -97,8 +97,8 @@ export const profile = {
     label: 'Profile',
     heading: 'Decisions under uncertainty',
     paragraphs: [
-      'I work where incomplete evidence must still support consequential decisions. My experience spans fraud and financial risk, government and defence analytics, scientific evidence, intelligence research and university teaching.',
-      'Across these settings, I build systems that remain explainable, monitored and accountable in use—not merely accurate in development.',
+      'I develop AI and analytical systems for decisions made with incomplete evidence. My experience spans fraud and risk, government and defence analytics, scientific evidence analysis and intelligence research.',
+      'I combine hands-on model development with explainability, monitoring, operational controls and human oversight—connecting analytical outputs with responsible decisions.',
     ],
     pullQuote: 'A model can help, but it cannot bear responsibility.',
     cta: { label: 'Read full profile', href: '/profile/' } satisfies CtaLink,
