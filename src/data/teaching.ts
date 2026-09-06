@@ -31,113 +31,118 @@ export interface TeachingInstitution {
 }
 
 const current: TeachingInstitution[] = [
-    {
-  institution: 'Universität für Weiterbildung Krems',
-  role: 'Lecturer',
-  period: '2025–present',
-  description:
-    'Designs and teaches recurring graduate and professional courses connecting quantitative methods, data science and intelligence analysis with uncertainty, interpretation and professional judgement.',
-  courses: [
-    {
-      title: 'Quantitative Methods for Intelligence and Counter-Terrorism',
-      note: 'Recurring graduate/professional course; most recently delivered 29–31 May 2026.',
-      homeNote:
-        'Recurring graduate and professional course. Most recently delivered in May 2026.',
-      repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems',
-    },
-    {
-      title: 'Data Science and Data Intelligence I & II',
-      note: 'Recurring graduate teaching; next scheduled delivery 15–17 January 2027.',
-      homeNote:
-        'Recurring graduate teaching. The next delivery is scheduled for January 2027.',
-    },
-  ],
-    },
+  {
+    institution: 'Universität für Weiterbildung Krems',
+    role: 'Lecturer',
+    period: '2025–present',
+    description:
+      'Designs and teaches recurring graduate and professional courses connecting quantitative methods, data science and intelligence analysis with uncertainty, interpretation and professional judgement.',
+    courses: [
+      {
+        title: 'Quantitative Methods for Intelligence and Counter-Terrorism',
+        note: 'Recurring graduate and professional course. Most recently delivered 29–31 May 2026.',
+        homeNote:
+          'Recurring graduate and professional course. Most recently delivered 29–31 May 2026.',
+        repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems',
+      },
+      {
+        title: 'Data Science and Data Intelligence I & II',
+        note: 'Recurring graduate teaching. Next scheduled delivery: 15–17 January 2027.',
+        homeNote:
+          'Recurring graduate teaching. Next scheduled delivery: 15–17 January 2027.',
+      },
+    ],
+  },
 ];
 
 const previous: TeachingInstitution[] = [
-    {
-  institution: 'National Sun Yat-sen University, Taiwan',
-  courses: [
-    {
-      title: 'Politics and Economy of Climate Change',
-      kind: 'Graduate Research Seminar',
-      period: '2018–2020',
-    },
-    {
-      title: 'Python Journalism: Using Machine Learning for Social Sciences',
-      kind: 'Graduate Research Seminar',
-      period: '2018–2020',
-    },
-  ],
-    },
-    {
-  institution: 'Stockholm University, Sweden',
-  courses: [
-    {
-      title: 'Human Rights in the Middle East, Turkey and East Asia',
-      kind: 'Graduate Module',
-      period: '2016–2017',
-    },
-    {
-      title: 'Middle Eastern and North African Politics and Economy',
-      kind: 'Undergraduate Module',
-      period: '2016–2017',
-    },
-    {
-      title: 'Area Studies: Theory and Method',
-      kind: 'Graduate Module',
-      period: '2016–2017',
-    },
-  ],
-    },
-    {
-  institution: 'University of Nottingham, United Kingdom',
-  courses: [
-    {
-      title: 'Roads to Modernity: An Introduction to Modern History, 1789–1945',
-      kind: 'Undergraduate Module',
-      period: '2014–2016',
-    },
-    {
-      title: 'Understanding Global Politics',
-      kind: 'Undergraduate Module',
-      period: '2014–2016',
-    },
-  ],
-    },
+  {
+    institution: 'National Sun Yat-sen University, Taiwan',
+    courses: [
+      {
+        title: 'Politics and Economy of Climate Change',
+        kind: 'Graduate Research Seminar',
+        period: '2018–2020',
+      },
+      {
+        title: 'Python Journalism: Using Machine Learning for Social Sciences',
+        kind: 'Graduate Research Seminar',
+        period: '2018–2020',
+      },
+    ],
+  },
+  {
+    institution: 'Massey University, New Zealand',
+    courses: [
+      {
+        title: 'Pacific Security Dynamics',
+        kind: 'Professional Development Course for Military Officers',
+        period: '2017–2018',
+      },
+    ],
+  },
+  {
+    institution: 'Stockholm University, Sweden',
+    courses: [
+      {
+        title: 'Human Rights in the Middle East, Turkey and East Asia',
+        kind: 'Graduate Module',
+        period: '2016–2017',
+      },
+      {
+        title: 'Middle Eastern and North African Politics and Economy',
+        kind: 'Undergraduate Module',
+        period: '2016–2017',
+      },
+      {
+        title: 'Area Studies: Theory and Method',
+        kind: 'Graduate Module',
+        period: '2016–2017',
+      },
+    ],
+  },
+  {
+    institution: 'University of Nottingham, United Kingdom',
+    courses: [
+      {
+        title: 'Roads to Modernity: An Introduction to Modern History, 1789–1945',
+        kind: 'Undergraduate Module',
+        period: '2014–2016',
+      },
+      {
+        title: 'Understanding Global Politics',
+        kind: 'Undergraduate Module',
+        period: '2014–2016',
+      },
+    ],
+  },
 ];
 
 const professional: TeachingInstitution[] = [
-    {
-  institution: 'Massey University, New Zealand',
-  courses: [
-    {
-      title: 'Pacific Security Dynamics',
-      kind: 'Professional Development Course for Military Officers',
-      period: '2017–2018',
-    },
-    {
-      title: 'Politics and Security',
-      kind: 'Professional Development Course for officers at the OSCE Academy in Bishkek',
-      period: '2017–2018',
-    },
-  ],
-    },
+  {
+    institution: 'OSCE Academy in Bishkek',
+    courses: [
+      {
+        title: 'Politics and Security',
+        kind: 'Professional Development Course for officers',
+        period: '2017–2018',
+      },
+    ],
+  },
 ];
 
 const workshops: Course[] = [
-    {
-  title: 'NLP for Political and Social Research',
-  period: 'National Sun Yat-sen University',
-  repositoryUrl: 'https://github.com/edbezci/workshop_nlp_research',
-    },
-    {
-  title: 'Clustering and Climate-Policy Analysis',
-  period: 'National Sun Yat-sen University',
-  repositoryUrl:
-    'https://github.com/edbezci/workshop_greenhousegas_emissions_clustering',
-    },
+  {
+    title: 'NLP for Political and Social Research',
+    period: 'National Sun Yat-sen University',
+    repositoryUrl: 'https://github.com/edbezci/workshop_nlp_research',
+  },
+  {
+    title: 'Clustering and Climate-Policy Analysis',
+    period: 'National Sun Yat-sen University',
+    repositoryUrl:
+      'https://github.com/edbezci/workshop_greenhousegas_emissions_clustering',
+  },
 ];
 
 export const teaching = {
@@ -150,11 +155,11 @@ export const teaching = {
   /** Homepage Teaching & Speaking section. */
   home: {
     label: 'Teaching & Speaking',
-    heading: 'Methods, judgement and professional practice',
+    heading: 'Teaching across disciplines and professional practice',
     intro:
-      'Since 2025, I have taught recurring graduate and professional courses in data science, machine learning and quantitative methods at Universität für Weiterbildung Krems. My teaching examines not only how methods work, but what their outputs can support, what remains unresolved and how professional judgement should be exercised.',
+      'My university teaching began at the University of Nottingham in 2014 and has since taken me to Sweden, New Zealand, Taiwan and Austria. I have taught undergraduates, master\'s students and military professionals across politics, intelligence and quantitative methods.\n\nSince 2025, I have taught recurring graduate and professional courses at Universität für Weiterbildung Krems. My teaching connects analytical methods with the interpretation of evidence, methodological limits and professional judgement.',
     attendNote:
-      'If you are attending the same conference, feel free to get in touch.',
+      'If you are attending the conference too, get in touch.',
     cta: {
       label: 'View teaching and speaking',
       href: '/teaching-speaking/',
@@ -163,10 +168,10 @@ export const teaching = {
 
   /** Complete Teaching & Speaking page. */
   page: {
-    label: 'Teaching & Speaking',
-    heading: 'Teaching and speaking',
+    label: 'Teaching and speaking',
+    heading: 'Teaching across disciplines and professional practice',
     intro:
-      'My teaching connects technical methods with professional judgement. Students learn not only how a statistical or machine-learning method works, but what its outputs can support, what remains unresolved and how results should be communicated in high-stakes environments.',
+      'My university teaching began at the University of Nottingham in 2014 and has since taken me to Sweden, New Zealand, Taiwan and Austria. I have taught undergraduates, master\'s students and military professionals across politics, intelligence and quantitative methods.\n\nSince 2025, I have taught recurring graduate and professional courses at Universität für Weiterbildung Krems. My teaching connects analytical methods with the interpretation of evidence, methodological limits and professional judgement.',
   },
 
   current,

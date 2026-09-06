@@ -48,22 +48,26 @@ export interface Role {
 export const AETHERNIX_URL = 'https://aethernix.com';
 
 const currentRoles: Role[] = [
-    { role: 'Founder & Principal Consultant', organisation: 'Aethernix' },
-    {
-  role: 'Lecturer',
-  organisation: 'Universität für Weiterbildung Krems',
-  period: '2025–present',
-    },
-    {
-  role: 'Non-Resident Senior Fellow',
-  organisation: 'USF Global and National Security Institute',
-  period: '2026–present',
-    },
-    {
-  role: 'Fellow',
-  organisation: 'Royal Historical Society',
-  period: '2021–present',
-    },
+  {
+    role: 'Founder & Principal Consultant',
+    organisation: 'Aethernix',
+    url: AETHERNIX_URL,
+  },
+  {
+    role: 'Lecturer',
+    organisation: 'Universität für Weiterbildung Krems',
+    period: '2025–present',
+  },
+  {
+    role: 'Non-Resident Senior Fellow',
+    organisation: 'USF Global and National Security Institute',
+    period: '2026–present',
+  },
+  {
+    role: 'Fellow',
+    organisation: 'Royal Historical Society',
+    period: '2021–present',
+  },
 ];
 
 export const profile = {

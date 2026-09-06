@@ -13,6 +13,7 @@ const { page, seo } = industry;
     page.sections.map((section) => (
       <section
         class="section section--light page-section"
+        id={section.id}
         aria-labelledby={`${section.id}-heading`}
       >
         <div class="container">
@@ -57,6 +58,14 @@ const { page, seo } = industry;
                   </a>
                 </p>
               )}
+              {subsection.secondaryLink && (
+                <p class="subsection__link subsection__link--secondary">
+                  <a href={subsection.secondaryLink.href}>
+                    {subsection.secondaryLink.label}
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -67,11 +76,8 @@ const { page, seo } = industry;
   <section class="section section--light page-section" aria-labelledby="closing-heading">
     <div class="container">
       <h2 class="page-section__heading visually-hidden" id="closing-heading">
-        Closing perspective
+        Closing
       </h2>
-      <div class="prose">
-        <p>{page.closing}</p>
-      </div>
       <p class="section-cta">
         <a href={page.cta.href}>
           {page.cta.label}<span aria-hidden="true"> &rarr;</span>
@@ -104,5 +110,9 @@ const { page, seo } = industry;
   .subsection__link {
     margin: 1.25rem 0 0;
     font-weight: 600;
+  }
+
+  .subsection__link--secondary {
+    margin-top: 0.6rem;
   }
 </style>

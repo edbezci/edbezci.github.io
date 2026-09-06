@@ -13,6 +13,7 @@ import { AETHERNIX_URL, type CtaLink, type SeoMetadata } from './profile';
 
 export interface IndustryHomeCase {
   title: string;
+  contextLine?: string;
   paragraphs: string[];
   link?: { label: string; href: string };
 }
@@ -23,6 +24,7 @@ export interface IndustrySubsection {
   listIntro?: string;
   list?: string[];
   link?: { label: string; href: string };
+  secondaryLink?: { label: string; href: string };
 }
 
 export interface IndustryPageSection {
@@ -42,43 +44,55 @@ const homeSupportingCases: IndustryHomeCase[] = [
     ],
   },
   {
-    title: 'Aethernix',
+    title: 'Scientific evidence and research technology',
     paragraphs: [
-      'Aethernix is a boutique AI consultancy developing private, traceable decision systems for organisations working with sensitive information. Its approach combines tailored analytical models, internal knowledge systems, orchestration, governance and human oversight.',
+      'Developed classification and data-processing pipelines for compliance- and quality-sensitive research workflows, transforming complex scientific source material into structured analytical evidence.',
     ],
-    link: { label: 'Aethernix', href: AETHERNIX_URL },
   },
 ];
 
 const pageSections: IndustryPageSection[] = [
   {
-    id: 'financial-services',
+    id: 'fraud-risk',
     heading: 'Regulated financial services',
     subsections: [
       {
-        heading: 'Fraud-risk models and human oversight',
+        heading: 'Fraud risk and decision intelligence',
         paragraphs: [
-          'In a regulated white-label BNPL environment, I led data-science work across fraud prevention, payment risk, consumer-risk decisioning, transaction monitoring and portfolio oversight for more than €200 million in annual transaction volume.',
-          'I developed fraud-risk models combining transactional and behavioural patterns with privacy-sensitive signals such as device intelligence, identity characteristics, location and geospatial intelligence, credit information and relevant external data.',
-          'The objective was not simply to produce a risk score. Model outputs had to support explainable operational decisions: whether to approve, review, monitor or intervene, and how those decisions should be reassessed as further evidence became available.',
-          'I built an internal human-in-the-loop fraud capability that replaced reliance on an external provider. It connected model outputs with analyst review, case management, intervention rules, feedback loops and ongoing monitoring.',
+          'In a regulated BNPL environment operating in Germany and Austria, I led data-science work across fraud prevention, payment risk, consumer-risk decisioning, transaction monitoring and portfolio oversight for more than €200 million in annual transaction volume.',
+          'I developed fraud and risk models combining transaction behaviour with privacy-sensitive device, identity and location intelligence, alongside credit information and relevant external data. These models supported decisions about approval, review, monitoring and intervention.',
+          'I built an in-house fraud capability that replaced reliance on an external provider. It connected model outputs with analyst review, case management, intervention rules, feedback loops and ongoing monitoring.',
         ],
       },
       {
-        heading: 'Lilith: orchestration and decision intelligence',
+        heading: 'Orchestration and decision intelligence',
         paragraphs: [
-          'Lilith was developed as an internal orchestration and decision-intelligence layer for risk operations. It brought together machine-learning models, rule engines, generative-AI services and retrieval-augmented internal knowledge within a shared operational interface.',
-          'One workflow combined tabular merchant-risk classification with website-content analysis using a compact language model. This supported the assessment of new merchants and helped identify inconsistencies between assigned merchant-category codes and actual business activity.',
-          'Retrieval-augmented generation gave users grounded access to internal policy and operational knowledge. Other services exposed model outputs, rule-based checks and risk alerts through the same operational layer.',
-          'The strategic value did not lie in RAG alone. It lay in orchestrating different analytical components around repeatable workflows, traceable evidence, escalation paths and human review. This turned otherwise separate models, rules and knowledge sources into usable decision infrastructure.',
+          'I developed an internal orchestration and decision-intelligence layer integrating machine-learning models, rule engines, generative AI and retrieval-augmented internal knowledge. It brought model outputs, automated checks, risk alerts and relevant internal guidance into shared workflows for human review.',
+          'One merchant-assessment workflow combined tabular risk classification with website-content analysis using a compact language model. It helped identify inconsistencies between assigned merchant-category codes and actual business activity.',
+          'Retrieval-augmented generation provided access to internal policy and operational knowledge. Source traceability, escalation paths and analyst review connected that information to operational decisions.',
         ],
       },
       {
-        heading: 'Monitoring and governance',
+        heading: 'Monitoring and operational oversight',
         paragraphs: [
-          'I developed analytical and executive-reporting frameworks covering fraud exposure, bad debt, portfolio performance, model behaviour, operational effectiveness and emerging risk patterns.',
-          'This work connected data science with product, engineering, risk, operations, compliance, legal and executive stakeholders. Governance included explainability, reproducibility, model documentation, performance monitoring and human oversight, supporting organisational readiness for SOC 2, ISAE 3402, the EU AI Act and Consumer Credit Directive II requirements.',
+          'I developed monitoring and executive-reporting frameworks covering fraud exposure, bad debt, portfolio performance, model behaviour, operational effectiveness and emerging risk patterns.',
+          'The work connected data science with product, engineering, risk, operations, compliance, legal and executive stakeholders. Model documentation, reproducibility, explainability and human oversight supported operational governance and audit readiness.',
         ],
+      },
+    ],
+  },
+  {
+    id: 'aethernix',
+    heading: 'Current consultancy',
+    subsections: [
+      {
+        heading: 'Aethernix — my boutique AI consultancy',
+        paragraphs: [
+          'Through Aethernix, I offer specialist advice, hands-on development and fractional technical leadership for organisations working on fraud, risk and private knowledge systems.',
+          'Engagements connect model development with operational workflows, governance and human oversight.',
+        ],
+        link: { label: 'Aethernix', href: AETHERNIX_URL },
+        secondaryLink: { label: 'Discuss an engagement', href: '/contact/' },
       },
     ],
   },
@@ -99,30 +113,6 @@ const pageSections: IndustryPageSection[] = [
       'The systems transformed complex scientific source material into structured analytical evidence, supporting more scalable, consistent and reviewable systematic-review processes.',
     ],
   },
-  {
-    id: 'aethernix',
-    heading: 'Aethernix',
-    subsections: [
-      {
-        heading: 'A boutique consultancy for accountable AI',
-        paragraphs: [
-          'Aethernix is a boutique AI consultancy for organisations that need analytical systems to operate within clear evidential, security and governance boundaries.',
-          'Its work focuses on private, traceable AI and decision systems for risk-intensive environments. The approach combines tailored models, rule-based logic, internal knowledge systems, orchestration and human review rather than treating generative AI as a standalone solution.',
-          'Potential application areas include fraud and financial risk, financial analysis, supply-chain intelligence and geopolitical or strategic analysis.',
-        ],
-        listIntro: 'The design priorities are:',
-        list: [
-          'Client control over sensitive information',
-          'Outputs grounded in identifiable sources',
-          'Clear boundaries between models, rules and human decisions',
-          'Traceable analytical workflows',
-          'Proportionate infrastructure',
-          'Monitoring and governance appropriate to the consequences of the decision',
-        ],
-        link: { label: 'Aethernix', href: AETHERNIX_URL },
-      },
-    ],
-  },
 ];
 
 export const industry = {
@@ -137,17 +127,20 @@ export const industry = {
     label: 'Industry',
     heading: 'From models to operational decisions',
     intro:
-      'I turn models, business rules and internal knowledge into operational decision systems, with human review, monitoring and controls built in.',
+      'I develop AI and analytical systems for fraud, risk and intelligence. My work connects model development with operational workflows, human review and the controls needed to monitor performance in use.',
     cta: {
       label: 'Explore industry experience',
       href: '/industry/',
     } satisfies CtaLink,
     featured: {
       title: 'Fraud risk and decision intelligence',
+      contextLine:
+        'Regulated BNPL · Germany and Austria · €200m+ annual transaction volume',
       paragraphs: [
-        'In a regulated BNPL environment handling more than €200 million in annual transaction volume, I developed fraud-risk models using transaction behaviour and privacy-sensitive device, identity and location intelligence. I built a human-in-the-loop capability that connected model outputs with case review, monitoring, operational controls and executive reporting.',
-        'I also developed Lilith, an internal orchestration and decision-intelligence layer integrating machine-learning models, rule engines, generative AI and retrieval-augmented internal knowledge. Its value was not RAG alone, but its ability to bring different forms of intelligence into traceable, human-reviewed operational workflows.',
+        'I developed fraud and risk models using transaction behaviour alongside privacy-sensitive device, identity and location intelligence. I built an in-house fraud capability that replaced reliance on an external provider, connecting model outputs with analyst review, monitoring, operational controls and executive reporting.',
+        'I also developed an orchestration and decision-intelligence layer integrating machine-learning models, rule engines, generative AI and retrieval from internal knowledge systems. It brought risk signals, automated checks and supporting information into shared operational workflows for human review.',
       ],
+      link: { label: 'Explore the industry case', href: '/industry/#fraud-risk' },
     } satisfies IndustryHomeCase,
     supporting: homeSupportingCases,
   },
@@ -157,12 +150,10 @@ export const industry = {
     label: 'Industry and applied AI',
     heading: 'Decision systems for consequential environments',
     intro:
-      'My industry work concerns analytical systems whose errors carry financial, operational or public consequences. I combine model development with the surrounding decision architecture: data quality, signal selection, rules, thresholds, internal knowledge, human review, monitoring, operational controls and executive reporting.',
+      'I develop AI and analytical systems for fraud, risk and intelligence. My work connects model development with operational workflows, human review and the controls needed to monitor performance in use.',
     sections: pageSections,
-    closing:
-      'Across these domains, the model is only one part of the system. Reliable decisions also depend on the quality of the underlying information, the design of operational controls, access to relevant institutional knowledge and clear responsibility for the outcome.',
     cta: {
-      label: 'Discuss industry or advisory work',
+      label: 'Discuss an engagement',
       href: '/contact/',
     } satisfies CtaLink,
   },

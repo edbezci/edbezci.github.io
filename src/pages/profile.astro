@@ -34,7 +34,15 @@ const contextualLinks = [
         {
           currentRoles.map((item) => (
             <li>
-              <span class="role-list__role">{item.role}</span>, {item.organisation}
+              <span class="role-list__role">{item.role}</span>,{' '}
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {item.organisation}
+                  <span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              ) : (
+                item.organisation
+              )}
               {item.period && <span class="role-list__detail"> · {item.period}</span>}
             </li>
           ))

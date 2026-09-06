@@ -111,7 +111,17 @@ const personJsonLd = {
       <article class="case-feature">
         <p class="kicker">Featured case</p>
         <h3 class="case-feature__title">{featuredCase.title}</h3>
+        {featuredCase.contextLine && (
+          <p class="case-feature__context">{featuredCase.contextLine}</p>
+        )}
         {featuredCase.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {featuredCase.link && (
+          <p class="case-feature__link">
+            <a href={featuredCase.link.href}>
+              {featuredCase.link.label}<span aria-hidden="true"> &rarr;</span>
+            </a>
+          </p>
+        )}
       </article>
       <div class="columns">
         {
@@ -132,6 +142,24 @@ const personJsonLd = {
           ))
         }
       </div>
+
+      <div class="aethernix-callout">
+        <p class="kicker">Current consultancy</p>
+        <h3 class="aethernix-callout__title">Aethernix — my boutique AI consultancy</h3>
+        <p>
+          Through <a href="https://aethernix.com/" target="_blank" rel="noopener noreferrer">Aethernix</a>,
+          I offer specialist advice, hands-on development and fractional technical leadership for
+          organisations working on fraud, risk and private knowledge systems.
+        </p>
+        <p>Engagements connect model development with operational workflows, governance and human oversight.</p>
+        <p class="aethernix-callout__link">
+          <a href="https://aethernix.com/" target="_blank" rel="noopener noreferrer">
+            Explore Aethernix<span aria-hidden="true"> &rarr;</span>
+            <span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
+        </p>
+      </div>
+
       <p class="section-cta">
         <a href={industry.home.cta.href}>
           {industry.home.cta.label}<span aria-hidden="true"> &rarr;</span>
@@ -148,7 +176,7 @@ const personJsonLd = {
         heading={teaching.home.heading}
       />
       <div class="prose">
-        <p>{teaching.home.intro}</p>
+        {teaching.home.intro.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
       </div>
       <div class="home-courses">
         {
@@ -156,17 +184,33 @@ const personJsonLd = {
             <div class="home-course">
               <h3>{course.title}</h3>
               <p>{course.homeNote}</p>
+              {course.repositoryUrl && (
+                <p class="home-course__link">
+                  <a href={course.repositoryUrl} target="_blank" rel="noopener noreferrer">
+                    Course materials
+                    <span class="visually-hidden"> (opens in a new tab)</span>
+                    <span aria-hidden="true"> &rarr;</span>
+                  </a>
+                </p>
+              )}
             </div>
           ))
         }
       </div>
-      <div class="home-event">
-        <EventItem event={nextEvent} />
-        <p class="home-event__note">{teaching.home.attendNote}</p>
-      </div>
       <p class="section-cta">
-        <a href={teaching.home.cta.href}>
-          {teaching.home.cta.label}<span aria-hidden="true"> &rarr;</span>
+        <a href="/teaching-speaking/">
+          Teaching history and materials<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
+      {nextEvent && (
+        <div class="home-event">
+          <EventItem event={nextEvent} />
+          <p class="home-event__note">{teaching.home.attendNote}</p>
+        </div>
+      )}
+      <p class="section-cta">
+        <a href="/speaking/">
+          Speaking and events<span aria-hidden="true"> &rarr;</span>
         </a>
       </p>
     </div>
@@ -250,7 +294,14 @@ const personJsonLd = {
   .case-feature__title {
     font-size: clamp(1.5rem, 2.8vw, 1.9rem);
     color: var(--text);
+    margin: 0 0 0.75rem;
+  }
+
+  .case-feature__context {
     margin: 0 0 1.25rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
   }
 
   .case-feature p:not(.kicker) {
@@ -260,6 +311,38 @@ const personJsonLd = {
 
   .case-feature p:last-child {
     margin-bottom: 0;
+  }
+
+  .case-feature__link {
+    margin: 1.25rem 0 0;
+    font-weight: 600;
+  }
+
+  .aethernix-callout {
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding: clamp(1.75rem, 3.5vw, 2.5rem);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    max-width: var(--measure);
+  }
+
+  .aethernix-callout__title {
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    color: var(--text);
+    margin: 0 0 1rem;
+  }
+
+  .aethernix-callout p {
+    color: var(--text-muted);
+  }
+
+  .aethernix-callout p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .aethernix-callout__link {
+    margin: 1.25rem 0 0;
+    font-weight: 600;
   }
 
   .columns h3 a {
@@ -294,6 +377,12 @@ const personJsonLd = {
     color: var(--text-muted);
     font-size: 0.98rem;
     margin-bottom: 0;
+  }
+
+  .home-course__link {
+    margin: 0.6rem 0 0;
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 
   .home-event {

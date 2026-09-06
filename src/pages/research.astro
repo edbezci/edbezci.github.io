@@ -62,6 +62,33 @@ const { page, seo } = research;
     </div>
   </section>
 
+  <section class="section section--light page-section" aria-labelledby="chapter-heading">
+    <div class="container">
+      <h2 class="page-section__heading" id="chapter-heading">Selected chapter</h2>
+      <div class="prose">
+        {
+          research.chapter2025.paragraphs.map((paragraph) => (
+            <p>
+              {paragraph.map((segment) =>
+                typeof segment === 'string' ? (
+                  segment
+                ) : (
+                  <cite>{segment.cite}</cite>
+                ),
+              )}
+            </p>
+          ))
+        }
+      </div>
+      <p class="section-cta">
+        <a href={research.chapter2025.cta.href} target="_blank" rel="noopener noreferrer">
+          {research.chapter2025.cta.label}<span aria-hidden="true"> &rarr;</span>
+          <span class="visually-hidden"> (opens in a new tab)</span>
+        </a>
+      </p>
+    </div>
+  </section>
+
   <section class="section section--light page-section" aria-labelledby="support-heading">
     <div class="container">
       <h2 class="page-section__heading" id="support-heading">

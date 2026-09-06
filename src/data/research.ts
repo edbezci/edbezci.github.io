@@ -1,5 +1,6 @@
 /**
- * Research content: profile, affiliations, book and research support.
+ * Research content: profile, affiliations, book, selected chapter and
+ * research support.
  *
  * The Royal Historical Society fellowship is an elected fellowship,
  * not a research grant, and appears under affiliations only. The book
@@ -35,6 +36,13 @@ export const research = {
         '.',
       ],
       [
+        'With Nihat Ali Özcan, I contributed the chapter ',
+        { cite: 'Turkish Covert Operations: A Useful Tool for Politicians?' },
+        ' to ',
+        { cite: 'Covert Action: National Approaches to Unacknowledged Intervention' },
+        ', published by Georgetown University Press in 2025.',
+      ],
+      [
         'My research has appeared in ',
         { cite: 'The Pacific Review' },
         ', ',
@@ -45,11 +53,11 @@ export const research = {
         { cite: 'War on the Rocks' },
         ' and ',
         { cite: 'The National Interest' },
-        '. My work has received support from institutions including the Taiwan Ministry of Foreign Affairs, the Royal Swedish Academy of Sciences, the Swedish Institute, the Eisenhower Foundation, the Truman Library Institute and the University of Nottingham.',
+        '. My research has received support from fellowships and grants in Taiwan, Sweden, the United States and the United Kingdom.',
       ],
     ] satisfies InlineSegment[][],
     ctas: [
-      { label: 'Explore research', href: '/research/' },
+      { label: 'Research and grants', href: '/research/' },
       { label: 'View all publications', href: '/publications/' },
     ] satisfies CtaLink[],
   },
@@ -104,6 +112,22 @@ export const research = {
     } satisfies CtaLink,
   },
 
+  chapter2025: {
+    paragraphs: [
+      [
+        'With Nihat Ali Özcan, I contributed the chapter ',
+        { cite: 'Turkish Covert Operations: A Useful Tool for Politicians?' },
+        ' to ',
+        { cite: 'Covert Action: National Approaches to Unacknowledged Intervention' },
+        ', published by Georgetown University Press in 2025.',
+      ],
+    ] satisfies InlineSegment[][],
+    cta: {
+      label: 'View publication',
+      href: 'https://press.georgetown.edu/Book/Covert-Action',
+    } satisfies CtaLink,
+  },
+
   grants: [
     {
       label: 'Taiwan Fellowship, Ministry of Foreign Affairs, Taiwan',
@@ -114,13 +138,18 @@ export const research = {
       period: '2017',
     },
     {
-      label: 'Swedish Institute Doctoral Scholarship and Network for Future Global Leaders',
+      label:
+        'Swedish Institute Doctoral Scholarship and Network for Future Global Leaders',
       period: '2016–2017',
     },
     { label: 'Eisenhower Foundation Research Grant', period: '2016' },
-    { label: 'Harry S. Truman Library Institute Research Grant', period: '2015' },
     {
-      label: 'University of Nottingham Vice-Chancellor’s Scholarship for Research Excellence',
+      label: 'Harry S. Truman Library Institute Research Grant',
+      period: '2015',
+    },
+    {
+      label:
+        'University of Nottingham Vice-Chancellor’s Scholarship for Research Excellence',
       period: '2014–2017',
     },
   ] satisfies Grant[],

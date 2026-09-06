@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import EventItem from '../components/EventItem.astro';
+import { upcomingEvents, featuredPastEvents, archiveEvents } from '../data/events';
+
+const title = 'Speaking and Events | Egemen Bezci';
+const description =
+  'Upcoming appearances and past talks by Egemen Bezci on applied AI, intelligence and professional practice, with dates, venues and programme links.';
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHeader
+    label="Speaking"
+    heading="Speaking and events"
+    intro="My speaking spans applied AI, intelligence research and professional practice. Here you can find upcoming appearances, selected talks and roundtable participation."
+  />
+
+  {
+    upcomingEvents.length > 0 && (
+      <section
+        class="section section--light page-section"
+        aria-labelledby="upcoming-heading"
+      >
+        <div class="container">
+          <h2 class="page-section__heading" id="upcoming-heading">
+            Upcoming
+          </h2>
+          <div class="event-stack">
+            {upcomingEvents.map((event) => (
+              <EventItem event={event} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    featuredPastEvents.length > 0 && (
+      <section
+        class="section section--light page-section"
+        aria-labelledby="past-heading"
+      >
+        <div class="container">
+          <h2 class="page-section__heading" id="past-heading">
+            Past appearances
+          </h2>
+          <div class="event-stack">
+            {featuredPastEvents.map((event) => (
+              <EventItem event={event} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    archiveEvents.length > 0 && (
+      <section
+        class="section section--light page-section"
+        aria-labelledby="archive-heading"
+      >
+        <div class="container">
+          <h2 class="page-section__heading" id="archive-heading">
+            Earlier appearances
+          </h2>
+          <div class="archive-list">
+            {archiveEvents.map((event) => (
+              <div class="archive-entry">
+                <p class="archive-entry__year">{event.displayDate}</p>
+                <div class="archive-entry__body">
+                  <p class="archive-entry__title">{event.contributionTitle}</p>
+                  <p class="archive-entry__role">{event.role}</p>
+                  <p class="archive-entry__venue">{event.eventName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section
+    class="section section--light page-section"
+    aria-labelledby="closing-heading"
+  >
+    <div class="container">
+      <h2 class="page-section__heading visually-hidden" id="closing-heading">
+        Closing
+      </h2>
+      <div class="prose">
+        <p>
+          If you are attending an upcoming event too, get in touch. I also
+          welcome invitations to speak on applied AI, risk, intelligence and
+          analytical methods.
+        </p>
+      </div>
+      <p class="section-cta">
+        <a href="/contact/">
+          Get in touch<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .event-stack {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .archive-list {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    max-width: 46rem;
+  }
+
+  .archive-entry {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .archive-entry__year {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .archive-entry__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .archive-entry__title {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .archive-entry__role {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  .archive-entry__venue {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 30rem) {
+    .archive-entry {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

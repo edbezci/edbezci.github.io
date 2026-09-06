@@ -3,13 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import EventItem from '../components/EventItem.astro';
 import { teaching } from '../data/teaching';
-import { upcomingEvents, recentEvents } from '../data/events';
+import { upcomingEvents, featuredPastEvents } from '../data/events';
 
 const { page, seo } = teaching;
 ---
 
 <BaseLayout title={seo.title} description={seo.description}>
-  <PageHeader label={page.label} heading={page.heading} intro={page.intro} />
+  <PageHeader label={page.label} heading={page.heading} intro={page.intro.split('\n\n').join(' ')} />
 
   <section class="section section--light page-section" aria-labelledby="current-teaching-heading">
     <div class="container">
@@ -34,7 +34,7 @@ const { page, seo } = teaching;
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Course repository
+                        Course materials
                         <span class="visually-hidden">
                           : {course.title} (opens in a new tab)
                         </span>
@@ -138,15 +138,29 @@ const { page, seo } = teaching;
     <div class="container">
       <h2 class="page-section__heading" id="speaking-heading">Speaking and events</h2>
 
-      <h3 class="page-section__subheading">Upcoming</h3>
-      <div class="event-stack">
-        {upcomingEvents.map((event) => <EventItem event={event} />)}
-      </div>
+      {upcomingEvents.length > 0 && (
+        <>
+          <h3 class="page-section__subheading">Upcoming</h3>
+          <div class="event-stack">
+            {upcomingEvents.map((event) => <EventItem event={event} />)}
+          </div>
+        </>
+      )}
 
-      <h3 class="page-section__subheading">Selected recent appearances</h3>
-      <div class="event-stack">
-        {recentEvents.map((event) => <EventItem event={event} />)}
-      </div>
+      {featuredPastEvents.length > 0 && (
+        <>
+          <h3 class="page-section__subheading">Selected recent appearances</h3>
+          <div class="event-stack">
+            {featuredPastEvents.map((event) => <EventItem event={event} />)}
+          </div>
+        </>
+      )}
+
+      <p class="section-cta">
+        <a href="/speaking/">
+          Speaking archive<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </p>
     </div>
   </section>
 </BaseLayout>
