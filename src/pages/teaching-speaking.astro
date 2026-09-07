@@ -21,7 +21,9 @@ const { page, seo } = teaching;
             <p class="institution__role">
               {institution.role}, {institution.period}
             </p>
-            <p class="institution__description">{institution.description}</p>
+            {institution.description && (
+              <p class="institution__description">{institution.description}</p>
+            )}
             <ul class="course-list" role="list">
               {institution.courses.map((course) => (
                 <li>
@@ -98,39 +100,6 @@ const { page, seo } = teaching;
           </div>
         ))
       }
-    </div>
-  </section>
-
-  <section class="section section--light page-section" aria-labelledby="workshops-heading">
-    <div class="container">
-      <h2 class="page-section__heading" id="workshops-heading">
-        Workshops and teaching materials
-      </h2>
-      <ul class="course-list" role="list">
-        {
-          teaching.workshops.map((workshop) => (
-            <li>
-              <p class="course-list__title">{workshop.title}</p>
-              <p class="course-list__detail">{workshop.period}</p>
-              {workshop.repositoryUrl && (
-                <p class="course-list__link">
-                  <a
-                    href={workshop.repositoryUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Explore workshop materials
-                    <span class="visually-hidden">
-                      : {workshop.title} (opens in a new tab)
-                    </span>
-                    <span aria-hidden="true"> &rarr;</span>
-                  </a>
-                </p>
-              )}
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </section>
 

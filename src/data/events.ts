@@ -61,10 +61,6 @@ const events: SpeakingEvent[] = [
     hostInstitution:
       'Department of Social Sciences, University of Naples Federico II',
     organisers: ['ECPR Standing Group on Organised Crime'],
-    collaborators: [
-      'Department of Social Sciences, University of Naples',
-      'Italian Institute for Philosophical Studies',
-    ],
     theme:
       'Mafia, Cartels and Crime Networks: Challenges to State and Society',
     eventUrl: 'https://ecpr.eu/Events/361',

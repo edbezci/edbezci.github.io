@@ -9,7 +9,7 @@
  * co-located here so each factual case is defined once.
  */
 
-import { AETHERNIX_URL, type CtaLink, type SeoMetadata } from './profile';
+import type { CtaLink, SeoMetadata } from './profile';
 
 export interface IndustryHomeCase {
   title: string;
@@ -82,21 +82,6 @@ const pageSections: IndustryPageSection[] = [
     ],
   },
   {
-    id: 'aethernix',
-    heading: 'Current consultancy',
-    subsections: [
-      {
-        heading: 'Aethernix — my boutique AI consultancy',
-        paragraphs: [
-          'Through Aethernix, I offer specialist advice, hands-on development and fractional technical leadership for organisations working on fraud, risk and private knowledge systems.',
-          'Engagements connect model development with operational workflows, governance and human oversight.',
-        ],
-        link: { label: 'Aethernix', href: AETHERNIX_URL },
-        secondaryLink: { label: 'Discuss an engagement', href: '/contact/' },
-      },
-    ],
-  },
-  {
     id: 'government-defence',
     heading: 'Government and defence technology',
     paragraphs: [
@@ -126,8 +111,6 @@ export const industry = {
   home: {
     label: 'Industry',
     heading: 'From models to operational decisions',
-    intro:
-      'I develop AI and analytical systems for fraud, risk and intelligence. My work connects model development with operational workflows, human review and the controls needed to monitor performance in use.',
     cta: {
       label: 'Explore industry experience',
       href: '/industry/',

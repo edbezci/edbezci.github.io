@@ -303,19 +303,6 @@ export const publications = [
     url: 'https://doi.org/10.1177/2158244013503165',
   },
   {
-    id: 'warhola-bezci-2013-war-and-peace-caucasus',
-    category: 'journal-article',
-    year: 2013,
-    title:
-      'War and Peace: Russia, Turkey, and the Domestic Dimension of Conflict Perpetuation, Cessation, and Resolution in the Caucasus',
-    authors: ['James W. Warhola', 'Egemen B. Bezci'],
-    venue: 'Avrasya İncelemeleri Dergisi',
-    volume: '2',
-    issue: '1',
-    pages: '1–37',
-    url: 'https://dergipark.org.tr/tr/pub/iuavid/article/251386',
-  },
-  {
     id: 'warhola-bezci-2010-religion-state-turkey',
     category: 'journal-article',
     year: 2010,
@@ -437,18 +424,6 @@ export const publications = [
     venue: 'Bulletin of the Atomic Scientists',
     publicationDate: '2018-03-28',
     url: 'https://thebulletin.org/2018/03/trumps-disregard-for-climate-change-is-only-natural/',
-  },
-  {
-    id: 'bezci-borroz-2018-ardern-post-brexit',
-    category: 'policy-writing',
-    year: 2018,
-    title:
-      'The Challenge Jacinda Ardern Faces in Dealing with a Post-Brexit Britain',
-    authors: ['Egemen Bezci', 'Nicholas Borroz'],
-    venue: 'Noted',
-    // Original noted.co.nz URL no longer resolves (verified 2026-08); the
-    // record is kept as a citation without a link.
-    linkStatus: 'legacy',
   },
   {
     id: 'bezci-borroz-2016-cia-turkish-coup',

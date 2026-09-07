@@ -75,7 +75,7 @@ export const profile = {
   shortName: 'Egemen Bezci',
   headline: 'AI and Risk Decision Systems',
   heroIntro:
-    'I design and govern AI systems for high-stakes decisions in fraud prevention, risk management and intelligence analysis. My approach integrates machine learning, operational rules and institutional knowledge with human judgement.',
+    'I design and govern analytical systems for high-stakes decisions in risk management and intelligence analysis in regulated environments. My approach integrates machine learning, generative AI, operational rules and institutional knowledge with human judgement.',
   identityLine:
     'Founder & Principal Consultant, Aethernix · Lecturer, Universität für Weiterbildung Krems · Non-Resident Senior Fellow, USF GNSI',
   heroAction: {
@@ -101,7 +101,7 @@ export const profile = {
     label: 'Profile',
     heading: 'Decisions under uncertainty',
     paragraphs: [
-      'I develop AI and analytical systems for decisions made with incomplete evidence. My experience spans fraud and risk, government and defence analytics, scientific evidence analysis and intelligence research.',
+      'I develop analytical systems for decisions made with incomplete evidence. My experience spans fraud and risk, government and defence analytics, scientific evidence analysis and intelligence research.',
       'I combine hands-on model development with explainability, monitoring, operational controls and human oversight—connecting analytical outputs with responsible decisions.',
     ],
     pullQuote: 'A model can help, but it cannot bear responsibility.',
@@ -116,13 +116,13 @@ export const profile = {
         'Profile of Egemen Bezci, PhD — AI and risk decision-systems practitioner, founder of Aethernix, former principal data scientist in regulated financial services, lecturer and intelligence researcher.',
     } satisfies SeoMetadata,
     label: 'Profile',
-    heading: 'AI, risk and decisions under uncertainty',
+    heading: 'Profile',
     paragraphs: [
-      'I work on analytical and AI-enabled systems used where evidence is incomplete and errors carry financial, operational or public consequences. My current work spans fraud and risk decisioning, private AI and knowledge systems, intelligence analysis and strategic warning.',
-      'I began my career as a scholar of intelligence and international security, completing a PhD in Political Science at the University of Nottingham. I subsequently conducted research and taught in Sweden, New Zealand and Taiwan. This work examined intelligence cooperation, covert action, secrecy, alliance politics and the ways institutions make decisions with incomplete or contested information.',
-      'I later moved into applied data science in Canada and Germany. My industry work has included scientific-evidence systems, government and defence analytics, natural-language processing, fraud prevention, payment risk, consumer-risk decisioning and portfolio oversight. In regulated financial services, I progressed to Principal Data Scientist and led the development and governance of human-in-the-loop decision systems.',
-      'Across these environments, I treat a model as one component of a wider decision system. Data quality, thresholds, rules, internal knowledge, human review, monitoring, documentation and operational responsibility all affect whether an analytical system can be trusted.',
-      'Today, I am Founder and Principal Consultant of Aethernix, Lecturer at Universität für Weiterbildung Krems, a Non-Resident Senior Fellow at the University of South Florida’s Global and National Security Institute, and a Fellow of the Royal Historical Society.',
+      'I work on analytical systems where evidence is incomplete and errors carry financial, operational or public consequences. My current work spans risk decisioning, knowledge systems, intelligence analysis and strategic warning.',
+      'I began my career as a scholar of intelligence, completing a PhD in Political Science at the University of Nottingham. I subsequently conducted research and taught in Sweden, New Zealand and Taiwan. This work examined the ways institutions make decisions with incomplete or contested information.',
+      'I later moved into applied data science in Canada and Germany. My industry work has included scientific-evidence systems, government and defence analytics, natural-language processing, fraud prevention and risk decisioning. In regulated financial services, I progressed to Principal Data Scientist and led the development and governance of human-in-the-loop decision systems.',
+      'Across these environments, I treat a model as one component of a wider decision system.',
+      'Today, I am Founder and Principal Consultant of Germany-based boutique consultancy Aethernix, Lecturer at Universität für Weiterbildung Krems, a Non-Resident Senior Fellow at the University of South Florida’s Global and National Security Institute, and a Fellow of the Royal Historical Society.',
     ],
   },
 

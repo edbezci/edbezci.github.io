@@ -1,6 +1,6 @@
 /**
- * Teaching content: current and previous university teaching,
- * professional education, and workshops with teaching materials.
+ * Teaching content: current and previous university teaching and
+ * professional education.
  *
  * Repository links are only set where the URL has been verified.
  * Courses at Universität für Weiterbildung Krems are recurring
@@ -35,8 +35,6 @@ const current: TeachingInstitution[] = [
     institution: 'Universität für Weiterbildung Krems',
     role: 'Lecturer',
     period: '2025–present',
-    description:
-      'Designs and teaches recurring graduate and professional courses connecting quantitative methods, data science and intelligence analysis with uncertainty, interpretation and professional judgement.',
     courses: [
       {
         title: 'Quantitative Methods for Intelligence and Counter-Terrorism',
@@ -131,20 +129,6 @@ const professional: TeachingInstitution[] = [
   },
 ];
 
-const workshops: Course[] = [
-  {
-    title: 'NLP for Political and Social Research',
-    period: 'National Sun Yat-sen University',
-    repositoryUrl: 'https://github.com/edbezci/workshop_nlp_research',
-  },
-  {
-    title: 'Clustering and Climate-Policy Analysis',
-    period: 'National Sun Yat-sen University',
-    repositoryUrl:
-      'https://github.com/edbezci/workshop_greenhousegas_emissions_clustering',
-  },
-];
-
 export const teaching = {
   seo: {
     title: 'Teaching and speaking | Egemen Bezci, PhD',
@@ -157,7 +141,7 @@ export const teaching = {
     label: 'Teaching & Speaking',
     heading: 'Teaching across disciplines and professional practice',
     intro:
-      'My university teaching began at the University of Nottingham in 2014 and has since taken me to Sweden, New Zealand, Taiwan and Austria. I have taught undergraduates, master\'s students and military professionals across politics, intelligence and quantitative methods.\n\nSince 2025, I have taught recurring graduate and professional courses at Universität für Weiterbildung Krems. My teaching connects analytical methods with the interpretation of evidence, methodological limits and professional judgement.',
+      'My university teaching began at the University of Nottingham in 2014 and has since taken me to Sweden, New Zealand, Taiwan and Austria. I have taught undergraduates, master\'s students and military professionals across politics, intelligence and quantitative methods.\n\nSince 2025, I have taught recurring graduate and professional courses on Intelligence and Data Science at Universität für Weiterbildung Krems. My teaching connects analytical methods with the interpretation of evidence, methodological limits and professional judgement.',
     attendNote:
       'If you are attending the conference too, get in touch.',
     cta: {
@@ -171,7 +155,7 @@ export const teaching = {
     label: 'Teaching and speaking',
     heading: 'Teaching across disciplines and professional practice',
     intro:
-      'My university teaching began at the University of Nottingham in 2014 and has since taken me to Sweden, New Zealand, Taiwan and Austria. I have taught undergraduates, master\'s students and military professionals across politics, intelligence and quantitative methods.\n\nSince 2025, I have taught recurring graduate and professional courses at Universität für Weiterbildung Krems. My teaching connects analytical methods with the interpretation of evidence, methodological limits and professional judgement.',
+      'My university teaching began at the University of Nottingham in 2014 and has since taken me to Sweden, New Zealand, Taiwan and Austria. I have taught undergraduates, master\'s students and military professionals across politics, intelligence and quantitative methods.\n\nSince 2025, I have taught recurring graduate and professional courses on Intelligence and Data Science at Universität für Weiterbildung Krems. My teaching connects analytical methods with the interpretation of evidence, methodological limits and professional judgement.',
   },
 
   current,
@@ -179,6 +163,4 @@ export const teaching = {
   previous,
 
   professional,
-
-  workshops,
 };
