@@ -134,7 +134,7 @@ const personJsonLd = {
                   item.title
                 )}
               </h3>
-              {item.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+              {item.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
             </div>
           ))
         }
@@ -163,7 +163,7 @@ const personJsonLd = {
           currentCourses.map((course) => (
             <div class="home-course">
               <h3>{course.title}</h3>
-              <p>{course.homeNote}</p>
+              {course.homeNote && <p>{course.homeNote}</p>}
               {course.repositoryUrl && (
                 <p class="home-course__link">
                   <a href={course.repositoryUrl} target="_blank" rel="noopener noreferrer">
@@ -181,6 +181,9 @@ const personJsonLd = {
         <a href="/teaching-speaking/">
           Teaching history and materials<span aria-hidden="true"> &rarr;</span>
         </a>
+      </p>
+      <p class="home-speaking-intro">
+        I regularly speak at and attend industry and academic events. Below, you can find my upcoming presentations and a selection of past talks.
       </p>
       {nextEvent && (
         <div class="home-event">
@@ -335,6 +338,13 @@ const personJsonLd = {
   .home-course__link {
     margin: 0.6rem 0 0;
     font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .home-speaking-intro {
+    margin: 1.5rem 0 0;
+    max-width: var(--measure);
+    color: var(--text);
     font-weight: 600;
   }
 

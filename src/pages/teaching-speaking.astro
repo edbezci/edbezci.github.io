@@ -28,7 +28,7 @@ const { page, seo } = teaching;
               {institution.courses.map((course) => (
                 <li>
                   <p class="course-list__title">{course.title}</p>
-                  <p class="course-list__detail">{course.note}</p>
+                  {course.note && <p class="course-list__detail">{course.note}</p>}
                   {course.repositoryUrl && (
                     <p class="course-list__link">
                       <a
@@ -69,6 +69,21 @@ const { page, seo } = teaching;
                   <p class="course-list__detail">
                     {course.kind}, {course.period}
                   </p>
+                  {course.repositoryUrl && (
+                    <p class="course-list__link">
+                      <a
+                        href={course.repositoryUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Course materials
+                        <span class="visually-hidden">
+                          : {course.title} (opens in a new tab)
+                        </span>
+                        <span aria-hidden="true"> &rarr;</span>
+                      </a>
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
@@ -78,30 +93,32 @@ const { page, seo } = teaching;
     </div>
   </section>
 
-  <section class="section section--light page-section" aria-labelledby="professional-education-heading">
-    <div class="container">
-      <h2 class="page-section__heading" id="professional-education-heading">
-        Professional education
-      </h2>
-      {
-        teaching.professional.map((institution) => (
-          <div class="institution">
-            <h3 class="institution__name">{institution.institution}</h3>
-            <ul class="course-list" role="list">
-              {institution.courses.map((course) => (
-                <li>
-                  <p class="course-list__title">{course.title}</p>
-                  <p class="course-list__detail">
-                    {course.kind}, {course.period}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
-    </div>
-  </section>
+  {teaching.professional.length > 0 && (
+    <section class="section section--light page-section" aria-labelledby="professional-education-heading">
+      <div class="container">
+        <h2 class="page-section__heading" id="professional-education-heading">
+          Professional education
+        </h2>
+        {
+          teaching.professional.map((institution) => (
+            <div class="institution">
+              <h3 class="institution__name">{institution.institution}</h3>
+              <ul class="course-list" role="list">
+                {institution.courses.map((course) => (
+                  <li>
+                    <p class="course-list__title">{course.title}</p>
+                    <p class="course-list__detail">
+                      {course.kind}, {course.period}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  )}
 
   <section class="section section--light page-section" aria-labelledby="speaking-heading">
     <div class="container">

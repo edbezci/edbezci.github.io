@@ -25,8 +25,8 @@ const tabs = [
   { id: 'book', label: 'Book' },
   { id: 'chapters', label: 'Book chapters' },
   { id: 'articles', label: 'Peer-reviewed journal articles' },
-  { id: 'editorial', label: 'Editorial and review essays' },
   { id: 'policy-writing', label: 'Policy writing and public commentary' },
+  { id: 'editorial', label: 'Editorial and review essays' },
 ];
 
 const featuredBook = book.find((entry) => entry.featured) ?? book[0];
@@ -291,6 +291,15 @@ const jsonLd = {
     </div>
   </section>
 
+  <section class="section section--light pub-category" id="policy-writing" aria-labelledby="policy-writing-heading">
+    <div class="container">
+      <h2 class="pub-category__heading" id="policy-writing-heading">Policy writing and public commentary</h2>
+      <ol class="pub-list">
+        {policyWriting.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
+      </ol>
+    </div>
+  </section>
+
   <section class="section section--light pub-category" id="editorial" aria-labelledby="editorial-heading">
     <div class="container">
       <h2 class="pub-category__heading" id="editorial-heading">Editorial and review essays</h2>
@@ -305,15 +314,6 @@ const jsonLd = {
       <h2 class="pub-category__heading" id="other-research-heading">Other research output</h2>
       <ol class="pub-list">
         {theses.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section section--light pub-category" id="policy-writing" aria-labelledby="policy-writing-heading">
-    <div class="container">
-      <h2 class="pub-category__heading" id="policy-writing-heading">Policy writing and public commentary</h2>
-      <ol class="pub-list">
-        {policyWriting.map((entry) => <li><PublicationEntry publication={entry} /></li>)}
       </ol>
     </div>
   </section>

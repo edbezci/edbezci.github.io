@@ -103,15 +103,19 @@ const events: SpeakingEvent[] = [
     status: 'past',
     eventName: 'Intelligence Studies Round Table Conference',
     role: 'Invited roundtable participant',
-    displayDate: '2025',
+    displayDate: '10–11 October 2025',
     year: 2025,
-    datePrecision: 'year',
+    eventDates: '10–11 October 2025',
+    datePrecision: 'day',
     city: 'Cambridge',
     country: 'United Kingdom',
     teachingPreview: true,
     featured: true,
-    sourceNotes:
-      'Exact dates, venue building and organisers not yet confirmed by owner.',
+    organisers: [
+      'Centre for Security and Intelligence Studies (BUCSIS), University of Buckingham',
+      'Department of Politics and International Studies (PAIS), University of Warwick',
+      "King's Centre for the Study of Intelligence (KCSI), King's College London",
+    ],
   },
   {
     status: 'past',
@@ -131,16 +135,7 @@ const events: SpeakingEvent[] = [
   // ================================================================
   // Archive (earlier appearances)
   // ================================================================
-  {
-    status: 'past',
-    eventName: 'Emory University',
-    contributionTitle: 'Turkish-Israeli Intelligence Cooperation',
-    role: 'Invited lecturer',
-    displayDate: '2023',
-    year: 2023,
-    datePrecision: 'year',
-    featured: false,
-  },
+
   {
     status: 'past',
     eventName:
@@ -153,17 +148,7 @@ const events: SpeakingEvent[] = [
     datePrecision: 'year',
     featured: false,
   },
-  {
-    status: 'past',
-    eventName: 'National Sun Yat-sen University · Kaohsiung, Taiwan',
-    contributionTitle:
-      'Hands-on Practice of Data Journalism: A Python Workshop to Analyze News',
-    role: 'Invited lecturer',
-    displayDate: '2019',
-    year: 2019,
-    datePrecision: 'year',
-    featured: false,
-  },
+
   {
     status: 'past',
     eventName: 'Chung-Ang University · Seoul, South Korea',

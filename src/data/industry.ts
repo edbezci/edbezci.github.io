@@ -40,7 +40,7 @@ const homeSupportingCases: IndustryHomeCase[] = [
   {
     title: 'Government and defence technology',
     paragraphs: [
-      'Co-designed an analyst-centred NLP platform for countering cognitive warfare, selected among the top 10 of more than 130 submissions to NATO’s 2021 Innovation Challenge.',
+      'Co-designed an analyst-centred NLP platform for countering cognitive warfare, selected among the top 10 of more than 130 submissions to NATO\'s 2021 Innovation Challenge. The full recording of the pitch day can be found <a href="https://www.youtube.com/watch?v=A_4-VOchGlo" target="_blank" rel="noopener noreferrer">here</a>.',
     ],
   },
   {
@@ -86,8 +86,8 @@ const pageSections: IndustryPageSection[] = [
     heading: 'Government and defence technology',
     paragraphs: [
       'In government and defence technology, I developed analyst-centred NLP and machine-learning systems for information-intensive environments.',
-      'I co-designed an analytics platform for countering cognitive warfare that was selected among the top 10 of more than 130 submissions to NATO’s 2021 Innovation Challenge. The system was intended to help analysts structure, explore and interpret large volumes of information rather than automate high-consequence judgements without oversight.',
-      'The work included classification, clustering, entity extraction, sentiment analysis, information retrieval and intelligence-oriented decision support.',
+      'I co-designed an analytics platform for countering cognitive warfare that was selected among the top 10 of more than 130 submissions to NATO\'s 2021 Innovation Challenge. The system was intended to help analysts structure, explore and interpret large volumes of information rather than automate high-consequence judgements without oversight.',
+      'The work included classification, clustering, entity extraction, sentiment analysis, information retrieval and intelligence-oriented decision support. The full recording of the pitch day can be found <a href="https://www.youtube.com/watch?v=A_4-VOchGlo" target="_blank" rel="noopener noreferrer">here</a>.',
     ],
   },
   {
@@ -133,7 +133,7 @@ export const industry = {
     label: 'Industry and applied AI',
     heading: 'Decision systems for consequential environments',
     intro:
-      'I develop AI and analytical systems for fraud, risk and intelligence. My work connects model development with operational workflows, human review and the controls needed to monitor performance in use.',
+      'I develop AI and analytical systems to support high-stakes decisions. My work connects model development with operational workflows, human review and the controls needed to monitor performance in use.',
     sections: pageSections,
     cta: {
       label: 'Discuss an engagement',

@@ -23,7 +23,7 @@ const { page, seo } = industry;
           {section.paragraphs && (
             <div class="prose">
               {section.paragraphs.map((paragraph) => (
-                <p>{paragraph}</p>
+                <p set:html={paragraph} />
               ))}
             </div>
           )}

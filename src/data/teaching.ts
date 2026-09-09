@@ -38,16 +38,11 @@ const current: TeachingInstitution[] = [
     courses: [
       {
         title: 'Quantitative Methods for Intelligence and Counter-Terrorism',
-        note: 'Recurring graduate and professional course. Most recently delivered 29–31 May 2026.',
-        homeNote:
-          'Recurring graduate and professional course. Most recently delivered 29–31 May 2026.',
-        repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems',
+        repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems/blob/main/statistics_and_quantitative_methods/introduction.ipynb',
       },
       {
-        title: 'Data Science and Data Intelligence I & II',
-        note: 'Recurring graduate teaching. Next scheduled delivery: 15–17 January 2027.',
-        homeNote:
-          'Recurring graduate teaching. Next scheduled delivery: 15–17 January 2027.',
+        title: 'Data Science and Data Intelligence',
+        repositoryUrl: 'https://github.com/edbezci/ct-cve-intel-krems/blob/main/data_science_and_intelligence/introduction.ipynb',
       },
     ],
   },
@@ -60,12 +55,14 @@ const previous: TeachingInstitution[] = [
       {
         title: 'Politics and Economy of Climate Change',
         kind: 'Graduate Research Seminar',
-        period: '2018–2020',
+        period: '2019',
+        repositoryUrl: 'https://github.com/edbezci/workshop_greenhousegas_emissions_clustering',
       },
       {
-        title: 'Python Journalism: Using Machine Learning for Social Sciences',
+        title: 'Hand-on Practice of Data Journalism: A Python Workshop to Analyze News',
         kind: 'Graduate Research Seminar',
-        period: '2018–2020',
+        period: '2019',
+        repositoryUrl: 'https://github.com/edbezci/workshop_nlp_research',
       },
     ],
   },
@@ -75,7 +72,17 @@ const previous: TeachingInstitution[] = [
       {
         title: 'Pacific Security Dynamics',
         kind: 'Professional Development Course for Military Officers',
-        period: '2017–2018',
+        period: '2018',
+      },
+    ],
+  },
+  {
+    institution: 'OSCE Academy in Bishkek, Kyrgyzstan',
+    courses: [
+      {
+        title: 'Politics and Security',
+        kind: 'Professional Development Course for officers',
+        period: '2018',
       },
     ],
   },
@@ -83,19 +90,14 @@ const previous: TeachingInstitution[] = [
     institution: 'Stockholm University, Sweden',
     courses: [
       {
-        title: 'Human Rights in the Middle East, Turkey and East Asia',
-        kind: 'Graduate Module',
-        period: '2016–2017',
-      },
-      {
         title: 'Middle Eastern and North African Politics and Economy',
         kind: 'Undergraduate Module',
-        period: '2016–2017',
+        period: '2017',
       },
       {
         title: 'Area Studies: Theory and Method',
         kind: 'Graduate Module',
-        period: '2016–2017',
+        period: '2017',
       },
     ],
   },
@@ -116,18 +118,7 @@ const previous: TeachingInstitution[] = [
   },
 ];
 
-const professional: TeachingInstitution[] = [
-  {
-    institution: 'OSCE Academy in Bishkek',
-    courses: [
-      {
-        title: 'Politics and Security',
-        kind: 'Professional Development Course for officers',
-        period: '2017–2018',
-      },
-    ],
-  },
-];
+const professional: TeachingInstitution[] = [];
 
 export const teaching = {
   seo: {

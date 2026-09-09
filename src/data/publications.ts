@@ -466,15 +466,7 @@ export const publications = [
     publicationDate: '2015-09-22',
     url: 'https://blogs.lse.ac.uk/europpblog/2015/09/22/the-renewed-turkey-pkk-conflict-has-shattered-the-illusion-that-kurds-can-participate-legitimately-in-turkeys-political-system/',
   },
-  {
-    id: 'bezci-yanarocak-2014-backgammon-chess',
-    category: 'policy-writing',
-    year: 2014,
-    title: 'Playing Backgammon on a Chess Board',
-    authors: ['Egemen B. Bezci', 'Hay Eytan Cohen Yanarocak'],
-    venue: 'Hürriyet Daily News',
-    url: 'https://www.hurriyetdailynews.com/playing-backgammon-on-a-chess-board-67837',
-  },
+
   {
     id: 'warhola-bezci-2011-wolf-bear-eagle',
     category: 'policy-writing',
